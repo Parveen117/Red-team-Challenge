@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Unit and adversarial controls
-        run: python -m unittest -v
+        run: python -m unittest discover -s tests -v
       - name: 50k subject/oracle target agreement campaign
         run: python -m challenge.campaign --cases 50000 --seed 117
       - name: Safe equivalent control
