@@ -8,6 +8,7 @@ from challenge.break_checker import check_break
 from challenge.core import ChallengeInputError, Step, analyze_history, verify_pair
 from challenge.oracle import analyze_history_oracle
 from challenge.strict_json import StrictJSONError, loads_strict
+from challenge.genesis import EXPECTED_GENESIS_SHA256, assert_frozen_genesis
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -55,6 +56,9 @@ class BreakTheGeometryTests(unittest.TestCase):
                 self.assertEqual(subject.typed_curvature_ledger, oracle.typed_curvature_ledger)
                 self.assertEqual(subject.aggregate_curvature, oracle.aggregate_curvature)
                 self.assertEqual(subject.spectral_shadow, oracle.spectral_shadow)
+
+    def test_genesis_hash_is_pinned(self):
+        self.assertEqual(assert_frozen_genesis(), EXPECTED_GENESIS_SHA256)
 
     def test_duplicate_json_key_is_invalid(self):
         raw = '{"protocol":"break-the-geometry-v1","protocol":"evil","track":"path_memory","left":[],"right":[]}'

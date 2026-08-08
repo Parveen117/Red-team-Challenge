@@ -39,6 +39,7 @@ AND subject verifier says EQUIVALENT
 
 ```bash
 python -m unittest -v
+python -m challenge.campaign --cases 50000 --seed 117
 python -m challenge.verifier fixtures/path_memory_attack.json
 python -m challenge.break_checker fixtures/path_memory_attack.json
 python -m challenge.break_checker fixtures/typed_residue_attack.json
@@ -60,6 +61,7 @@ and modify only the histories/track. The official checker returns `BREAK_ACCEPTE
 - `CHALLENGE.md` — mathematical protocol.
 - `BREAK_RULES.md` — exact red-team win/loss rules.
 - `FOUNDATION.md` — theorem provenance and claim boundary.
+- `challenge/genesis.py` — exact SHA-256 Genesis integrity gate.
 - `challenge/core.py` — subject implementation.
 - `challenge/oracle.py` — independently structured semantic oracle.
 - `challenge/break_checker.py` — official kill-condition checker.

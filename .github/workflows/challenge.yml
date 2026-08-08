@@ -20,6 +20,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Unit and adversarial controls
         run: python -m unittest -v
+      - name: Deterministic subject/oracle campaign
+        run: python -m challenge.campaign --cases 50000 --seed 117
       - name: Path-memory hostile control
         run: python -m challenge.break_checker fixtures/path_memory_attack.json
       - name: Typed-residue hostile control
