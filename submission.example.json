@@ -1,0 +1,12 @@
+{
+  "protocol": "break-recognition-v1",
+  "stage": "stage_a_blind_observer",
+  "left": [
+    {"x": 1, "y": 0},
+    {"x": 0, "y": 1}
+  ],
+  "right": [
+    {"x": 1, "y": 0},
+    {"x": 0, "y": 1}
+  ]
+}
