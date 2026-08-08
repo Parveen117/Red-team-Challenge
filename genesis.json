@@ -1,0 +1,63 @@
+{
+  "base_composition": "(x2,y2) o (x1,y1) = (x1+x2, y1+y2) mod p",
+  "break_condition": "eligible_public_collision AND oracle_target_distinct AND subject_verifier_returns_EQUIVALENT",
+  "field": {
+    "kind": "prime_field",
+    "p": 101
+  },
+  "incremental_memory": "z <- z + step_x * current_y mod p",
+  "limits": {
+    "max_path_length": 32
+  },
+  "memory_cocycle": "omega(b,a) = b_x * a_y mod p",
+  "protocol": "break-the-geometry-v1",
+  "scope": {
+    "accepted_break": "A false equivalence inside the admitted formal grammar under the frozen Genesis.",
+    "cryptographic_hardness_claim": false,
+    "natural_language_semantics": "out_of_scope",
+    "unbreakable_claim": false
+  },
+  "spectral_shadow": {
+    "representation": "R(X,Y)=[[X,Y],[0,X]] over Z_p",
+    "signature": [
+      "trace = 2X mod p",
+      "determinant = X^2 mod p"
+    ],
+    "warning": "This shadow is intentionally not assumed target-faithful."
+  },
+  "step_schema": {
+    "coordinate_domain": "integer in [0,p-1]; booleans are invalid",
+    "exact_keys": [
+      "x",
+      "y"
+    ],
+    "type": "object"
+  },
+  "title": "BREAK THE GEOMETRY",
+  "tracks": {
+    "path_memory": {
+      "public_observation": [
+        "endpoint",
+        "spectral_shadow"
+      ],
+      "recognition_target": [
+        "endpoint",
+        "cocycle_memory"
+      ]
+    },
+    "typed_residue": {
+      "public_observation": [
+        "endpoint",
+        "spectral_shadow",
+        "cocycle_memory",
+        "aggregate_curvature"
+      ],
+      "recognition_target": [
+        "endpoint",
+        "cocycle_memory",
+        "typed_curvature_ledger"
+      ]
+    }
+  },
+  "typed_curvature": "k(next,prev) = next_x*prev_y - prev_x*next_y mod p"
+}

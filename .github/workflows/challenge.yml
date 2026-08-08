@@ -1,0 +1,26 @@
+name: Break the Geometry CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  challenge:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Unit and adversarial controls
+        run: python -m unittest -v
+      - name: Path-memory hostile control
+        run: python -m challenge.break_checker fixtures/path_memory_attack.json
+      - name: Typed-residue hostile control
+        run: python -m challenge.break_checker fixtures/typed_residue_attack.json
