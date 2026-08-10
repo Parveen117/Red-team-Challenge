@@ -1,77 +1,60 @@
-# BREAK RECOGNITION
+# PUBLIC RED-TEAM CHALLENGES
 
-Public red-team challenge for the Recognition Kernel Framework.
+Executable falsification challenges for Recognition / RNKE systems.
 
-This repository contains a **two-stage falsifiable recognition-blindness challenge**.
+The default branch is `main`. Every released challenge lives on `main`, has a frozen machine-readable contract, a local checker, adversarial tests, and a dedicated GitHub Actions gate.
 
-## Stage A — Find the blind spot
+## Challenge index
 
-The declared Recognition target has four exact memory channels over `Z_101`, but the subject observer exposes only three independent linear channels.
+### 1. BREAK RECOGNITION v1
 
-The framework predicts that this observer cannot be target-faithful.
+Find a collision in a deliberately rank-deficient finite Recognition observer, then try to break its theorem-minimal four-channel repair.
 
-Your job is to find two valid morphic histories with the same endpoint and different Recognition targets that nevertheless collide under the Stage-A observer.
+Start here:
 
-Expected winning machine result:
+- [`CHALLENGE.md`](CHALLENGE.md)
+- [`BREAK_RULES.md`](BREAK_RULES.md)
+- checker: `python -m challenge.break_checker submission.example.json`
+
+Winning results:
 
 ```text
 BREAK_ACCEPTED_STAGE_A
-```
-
-No concrete winning history pair is included in the repository.
-
-## Stage B — Break the minimal repair
-
-Stage B adds exactly one observer channel. Its 4x4 Vandermonde observer has determinant
-
-```text
-12 mod 101
-```
-
-and is therefore invertible.
-
-Now try to make two target-distinct histories collide anyway. A valid Stage-B break would expose an implementation, parsing, arithmetic, or certificate-faithfulness failure rather than the known rank defect of Stage A.
-
-Expected winning machine result:
-
-```text
 BREAK_ACCEPTED_STAGE_B
 ```
 
-## Frozen Genesis
+### 2. BREAK CELEXTRIX: IMPOSSIBLE RETURN v1
 
-Protocol:
+> **Make CELEXTRIX forget how you returned.**
 
-```text
-break-recognition-v1
-```
+Submit two distinct closed routes that end at the same point. Stage A asks for a realizable collision in a three-channel observer of a four-channel higher-order route-memory target. Stage B adds the fourth Vandermonde channel and becomes an implementation/faithfulness challenge.
 
-Genesis SHA-256:
+Start here:
 
-```text
-62b2768695c23e3935f1b54a02d74ed8bf8d3bc1420a755c85235f7f176050b1
-```
+- [`celextrix_impossible_return/README.md`](celextrix_impossible_return/README.md)
+- checker: `node celextrix_impossible_return/checker.mjs celextrix_impossible_return/submission.example.json`
+- tests: `node celextrix_impossible_return/tests.mjs`
+- deterministic search: `node celextrix_impossible_return/campaign.mjs --stage A --cases 50000 --seed 117`
 
-The checker refuses to run if `genesis.json` changes without changing the pinned executable contract.
-
-## Quick start
-
-```bash
-python -m unittest -v
-python -m challenge.campaign --cases 50000 --seed 117
-python -m challenge.break_checker submission.example.json
-```
-
-## Core break predicate
+Winning results:
 
 ```text
-same endpoint
-AND independent oracle target is different
-AND subject observer says EQUIVALENT
+BREAK_ACCEPTED_STAGE_A
+BREAK_ACCEPTED_STAGE_B
 ```
 
-The subject compares an **observer code**. The oracle compares the **raw declared target**. They are intentionally not the same answer key.
+## What counts as a break
+
+A valid break must be produced by the released checker on the exact reported commit and must satisfy that challenge's frozen grammar and predicate.
+
+Unsupported prose, malformed input, unknown rules, duplicate JSON keys, changing Genesis, attacking unrelated services, or merely making the program crash are not accepted unless the challenge rules explicitly classify them as a break.
+
+## Reporting
+
+Use the challenge-specific GitHub Issue Form. Include the exact commit SHA, complete non-secret submission, exact machine result, and a concise proof that the frozen input rules are satisfied.
+
+Security-sensitive findings that could materially endanger an unrelated live service should follow the repository security/disclosure route rather than being posted publicly.
 
 ## Claim boundary
 
-This is not a claim of unbreakable cryptography. Stage A is deliberately deficient and should be breakable. Stage B is a theorem-minimal exact repair in this finite model; a clean campaign supports only the declared finite-model claim.
+These are finite, executable challenges. A clean campaign means only that no break was found under the declared model and tested surface. It is not a universal security, cryptographic, physical, or mathematical correctness claim.

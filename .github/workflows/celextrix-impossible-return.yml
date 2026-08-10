@@ -1,0 +1,55 @@
+name: CELEXTRIX Impossible Return Challenge
+
+on:
+  pull_request:
+    paths:
+      - "celextrix_impossible_return/**"
+      - ".github/workflows/celextrix-impossible-return.yml"
+      - ".github/ISSUE_TEMPLATE/celextrix-impossible-return-break.yml"
+      - "README.md"
+  push:
+    branches: [main]
+    paths:
+      - "celextrix_impossible_return/**"
+      - ".github/workflows/celextrix-impossible-return.yml"
+      - ".github/ISSUE_TEMPLATE/celextrix-impossible-return-break.yml"
+      - "README.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]
+    steps:
+      - name: Checkout exact challenge state
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Run exact challenge tests
+        run: node celextrix_impossible_return/tests.mjs
+
+      - name: Verify deterministic Stage-A realizability
+        run: node celextrix_impossible_return/campaign.mjs --stage A --cases 10000 --seed 117
+
+      - name: Verify Stage-B repaired observer campaign
+        run: node celextrix_impossible_return/campaign.mjs --stage B --cases 25000 --seed 117
+
+      - name: Verify baseline checker fixture
+        run: |
+          set -euo pipefail
+          output="$(node celextrix_impossible_return/checker.mjs celextrix_impossible_return/submission.example.json)"
+          echo "$output"
+          node -e 'const c=JSON.parse(process.argv[1]); if(c.result!=="NO_BREAK"||!c.certificate_sha256) process.exit(1)' "$output"

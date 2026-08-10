@@ -1,0 +1,39 @@
+{
+  "protocol": "celextrix-impossible-return-v1",
+  "field": {
+    "prime": 101
+  },
+  "path": {
+    "alphabet": "NESW",
+    "minimum_length": 8,
+    "maximum_length": 64,
+    "must_close": true,
+    "distinct_paths_required": true
+  },
+  "target": {
+    "channels": [
+      "signed_area2",
+      "x_weighted_area2",
+      "y_weighted_area2",
+      "radial_weighted_area2"
+    ],
+    "construction": "edge-moment-signature-v1"
+  },
+  "stage_a": {
+    "observer_points": [1, 2, 3],
+    "intentionally_rank_deficient": true,
+    "abstract_blind_dimension": 1
+  },
+  "stage_b": {
+    "observer_points": [1, 2, 3, 4],
+    "vandermonde_determinant_mod_101": 12,
+    "theorem_minimal_repair": true
+  },
+  "break_predicate": [
+    "valid_submission",
+    "same_endpoint",
+    "subject_equivalent",
+    "oracle_target_distinct"
+  ],
+  "canonical_json": "sorted-keys-utf8-v1"
+}
