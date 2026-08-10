@@ -1,0 +1,67 @@
+name: CELEXTRIX Impossible Return break report
+description: Report a checker-confirmed break of celextrix-impossible-return-v1
+title: "[CELEXTRIX BREAK] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report only a non-secret submission that the released checker classifies as `BREAK_ACCEPTED_STAGE_A` or `BREAK_ACCEPTED_STAGE_B`.
+
+        Do not include passwords, tokens, private keys, personal data, destructive payloads, or attacks against unrelated services.
+
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Challenge stage
+      options:
+        - Stage A — declared blind observer
+        - Stage B — theorem-minimal repaired observer
+    validations:
+      required: true
+
+  - type: input
+    id: commit
+    attributes:
+      label: Exact checker commit SHA
+      placeholder: 40-character Git commit SHA
+    validations:
+      required: true
+
+  - type: textarea
+    id: submission
+    attributes:
+      label: Complete submission JSON
+      description: Paste the exact non-secret JSON passed to the checker.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: result
+    attributes:
+      label: Exact checker output
+      description: Paste the complete machine-readable certificate.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: argument
+    attributes:
+      label: Why this satisfies the frozen break predicate
+      description: Explain validity, same endpoint, subject equivalence, and oracle target distinction.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestations
+    attributes:
+      label: Attestations
+      options:
+        - label: I reproduced this on the exact reported commit.
+          required: true
+        - label: I did not modify Genesis, the checker, or the admitted grammar.
+          required: true
+        - label: This report contains no credentials, secrets, personal data, or destructive payloads.
+          required: true
