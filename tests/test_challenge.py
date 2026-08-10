@@ -2,16 +2,30 @@ from __future__ import annotations
 import unittest
 
 from challenge.constants import P, STAGES
-from challenge.genesis import assert_frozen_genesis
+from challenge.genesis import (
+    EXPECTED_GENESIS_SHA256,
+    assert_frozen_genesis,
+    genesis_sha256,
+)
 from challenge.model import ChallengeInputError, Step, validate_submission
 from challenge.oracle import analyze_oracle
 from challenge.subject import analyze_subject
 from challenge.break_checker import check_break
 from challenge.strict_json import StrictJSONError, loads_strict
 
+
 class ChallengeTests(unittest.TestCase):
     def test_genesis_is_frozen(self):
-        self.assertEqual(assert_frozen_genesis(), "62b2768695c23e3935f1b54a02d74ed8bf8d3bc1420a755c85235f7f176050b1")
+        self.assertEqual(assert_frozen_genesis(), EXPECTED_GENESIS_SHA256)
+
+    def test_genesis_hash_is_crlf_portable_but_content_sensitive(self):
+        lf = b'{\n  "protocol": "break-recognition-v1"\n}\n'
+        crlf = lf.replace(b"\n", b"\r\n")
+        self.assertEqual(genesis_sha256(lf), genesis_sha256(crlf))
+        self.assertNotEqual(
+            genesis_sha256(lf),
+            genesis_sha256(lf.replace(b"break-recognition-v1", b"break-recognition-v2")),
+        )
 
     def test_stage_a_has_known_abstract_blind_direction(self):
         delta = (95, 11, 95, 1)
@@ -70,6 +84,7 @@ class ChallengeTests(unittest.TestCase):
     def test_duplicate_json_key_rejected(self):
         with self.assertRaises(StrictJSONError):
             loads_strict('{"a":1,"a":2}')
+
 
 if __name__ == "__main__":
     unittest.main()

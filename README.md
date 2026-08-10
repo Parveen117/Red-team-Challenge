@@ -14,8 +14,12 @@ Start here:
 
 - [`CHALLENGE.md`](CHALLENGE.md)
 - [`BREAK_RULES.md`](BREAK_RULES.md)
+- tests: `python -m unittest discover -s tests -v`
+- campaign: `python -m challenge.campaign --cases 50000 --seed 117`
 - checker: `python -m challenge.break_checker submission.example.json`
 - report: **Issues -> BREAK RECOGNITION v1 break report**
+
+`python -m unittest -v` is also supported from the repository root. Genesis verification is line-ending portable across Linux/macOS/Windows while remaining content-sensitive; `genesis.json` is additionally pinned to LF in `.gitattributes`.
 
 Winning results:
 
