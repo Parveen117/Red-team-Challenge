@@ -1,0 +1,69 @@
+name: BREAK RECOGNITION v1 break report
+description: Report a checker-confirmed break of break-recognition-v1
+title: "[BREAK RECOGNITION] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report only a non-secret submission that the released checker classifies as `BREAK_ACCEPTED_STAGE_A` or `BREAK_ACCEPTED_STAGE_B`.
+
+        Stage A is intentionally blind and is expected to admit a realizable witness. Stage B is the repaired observer track and is the stronger implementation/faithfulness challenge.
+
+        Do not include passwords, tokens, private keys, personal data, destructive payloads, or attacks against unrelated services.
+
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Challenge stage
+      options:
+        - Stage A — stage_a_blind_observer
+        - Stage B — stage_b_minimal_repair
+    validations:
+      required: true
+
+  - type: input
+    id: commit
+    attributes:
+      label: Exact checker commit SHA
+      placeholder: 40-character Git commit SHA
+    validations:
+      required: true
+
+  - type: textarea
+    id: submission
+    attributes:
+      label: Complete submission JSON
+      description: Paste the exact non-secret JSON passed to the checker.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: result
+    attributes:
+      label: Exact checker output
+      description: Paste the complete machine-readable checker result.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: argument
+    attributes:
+      label: Why this satisfies the frozen break predicate
+      description: Explain grammar validity, equal endpoint, oracle target distinction, and subject equivalence.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestations
+    attributes:
+      label: Attestations
+      options:
+        - label: I reproduced this on the exact reported commit.
+          required: true
+        - label: I did not modify Genesis, the checker, the oracle, or the admitted grammar.
+          required: true
+        - label: This report contains no credentials, secrets, personal data, or destructive payloads.
+          required: true

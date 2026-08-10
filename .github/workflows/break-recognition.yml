@@ -3,8 +3,10 @@ name: Break Recognition CI
 on:
   push:
     branches:
+      - main
       - agent/break-recognition-v1
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
 
 permissions:
@@ -12,18 +14,31 @@ permissions:
 
 jobs:
   challenge:
-    runs-on: ubuntu-latest
+    name: challenge (${{ matrix.python-version }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
     strategy:
+      fail-fast: false
       matrix:
         python-version: ['3.11', '3.12']
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout exact challenge state
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Unit and adversarial controls
         run: python -m unittest discover -s tests -v
+
       - name: 50k subject/oracle target agreement campaign
         run: python -m challenge.campaign --cases 50000 --seed 117
+
       - name: Safe equivalent control
         run: python -m challenge.break_checker fixtures/equivalent_control.json
