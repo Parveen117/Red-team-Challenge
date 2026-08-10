@@ -2,7 +2,7 @@
 
 Executable falsification challenges for Recognition / RNKE systems.
 
-The default branch is `main`. Every released challenge lives on `main`, has a frozen machine-readable contract, a local checker, adversarial tests, and a dedicated GitHub Actions gate.
+The default branch is `main`. Every released challenge lives on `main`, has a frozen machine-readable contract, a local checker, adversarial tests, a dedicated GitHub Actions gate, and a challenge-specific break-report Issue Form.
 
 ## Challenge index
 
@@ -15,6 +15,7 @@ Start here:
 - [`CHALLENGE.md`](CHALLENGE.md)
 - [`BREAK_RULES.md`](BREAK_RULES.md)
 - checker: `python -m challenge.break_checker submission.example.json`
+- report: **Issues -> BREAK RECOGNITION v1 break report**
 
 Winning results:
 
@@ -35,6 +36,7 @@ Start here:
 - checker: `node celextrix_impossible_return/checker.mjs celextrix_impossible_return/submission.example.json`
 - tests: `node celextrix_impossible_return/tests.mjs`
 - deterministic search: `node celextrix_impossible_return/campaign.mjs --stage A --cases 50000 --seed 117`
+- report: **Issues -> CELEXTRIX Impossible Return break report**
 
 Winning results:
 
@@ -51,9 +53,14 @@ Unsupported prose, malformed input, unknown rules, duplicate JSON keys, changing
 
 ## Reporting
 
-Use the challenge-specific GitHub Issue Form. Include the exact commit SHA, complete non-secret submission, exact machine result, and a concise proof that the frozen input rules are satisfied.
+Open the repository's **Issues -> New issue** page and choose the form for the challenge you attacked:
 
-Security-sensitive findings that could materially endanger an unrelated live service should follow the repository security/disclosure route rather than being posted publicly.
+- **BREAK RECOGNITION v1 break report** for `break-recognition-v1`;
+- **CELEXTRIX Impossible Return break report** for `celextrix-impossible-return-v1`.
+
+Include the exact commit SHA, complete non-secret submission, exact machine result, and a concise proof that the frozen input rules are satisfied.
+
+Security-sensitive findings that could materially endanger an unrelated live service should not be posted as a public challenge report.
 
 ## Claim boundary
 
