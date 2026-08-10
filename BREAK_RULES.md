@@ -48,6 +48,14 @@ The Stage-B 4x4 memory observer is invertible over `Z_101`. A Stage-B break ther
 - claiming a Stage-A break disproves the repaired Stage-B observer;
 - claiming that a clean Stage-B campaign proves universal security.
 
+## Reporting a checker-confirmed break
+
+Open **Issues -> New issue -> BREAK RECOGNITION v1 break report**.
+
+Report only a non-secret submission that the released checker classifies as `BREAK_ACCEPTED_STAGE_A` or `BREAK_ACCEPTED_STAGE_B`. Include the exact checker commit SHA, the complete admitted JSON, the exact checker output, and a concise proof that the frozen predicate is satisfied.
+
+Do not post credentials, tokens, private keys, personal data, destructive payloads, or attacks against unrelated services.
+
 Genesis SHA-256:
 
 ```text
