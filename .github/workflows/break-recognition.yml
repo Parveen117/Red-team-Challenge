@@ -1,0 +1,29 @@
+name: Break Recognition CI
+
+on:
+  push:
+    branches:
+      - agent/break-recognition-v1
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  challenge:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Unit and adversarial controls
+        run: python -m unittest discover -s tests -v
+      - name: 50k subject/oracle target agreement campaign
+        run: python -m challenge.campaign --cases 50000 --seed 117
+      - name: Safe equivalent control
+        run: python -m challenge.break_checker fixtures/equivalent_control.json

@@ -1,0 +1,58 @@
+{
+  "break_condition": "same endpoint AND oracle target distinct AND subject observer returns EQUIVALENT",
+  "field": {
+    "kind": "prime_field",
+    "p": 101
+  },
+  "history": {
+    "length": "2..12",
+    "step": {
+      "x": "integer in [0,100]",
+      "y": "integer in [0,100]"
+    }
+  },
+  "observer_family": {
+    "definition": "For alpha, C_alpha(m0,m1,m2,m3)=m0+alpha*m1+alpha^2*m2+alpha^3*m3 mod 101",
+    "stage_a_blind_observer": {
+      "alphas": [
+        1,
+        2,
+        3
+      ],
+      "expected_property": "one-dimensional abstract blind kernel",
+      "rank": 3,
+      "target_dimension": 4
+    },
+    "stage_b_minimal_repair": {
+      "alphas": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected_property": "target-faithful linear observer",
+      "rank": 4,
+      "target_dimension": 4,
+      "vandermonde_determinant_mod_101": 12
+    }
+  },
+  "protocol": "break-recognition-v1",
+  "public_endpoint": [
+    "sum_x mod 101",
+    "sum_y mod 101"
+  ],
+  "recognition_target": [
+    "cocycle_memory",
+    "aggregate_adjacent_curvature",
+    "first_curvature_moment",
+    "second_curvature_moment"
+  ],
+  "scope": {
+    "cryptographic_hardness_claim": false,
+    "natural_language_semantics": "out_of_scope",
+    "stage_a": "Guaranteed-blind observer. Find a concrete history-pair witness.",
+    "stage_b": "Theorem-minimal repaired observer. Breaks target implementation, parser, arithmetic, or certificate faithfulness.",
+    "unbreakable_claim": false
+  },
+  "title": "BREAK RECOGNITION"
+}
