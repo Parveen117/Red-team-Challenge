@@ -1,5 +1,11 @@
 # CELEXTRIX Impossible Return — Faithful Checker v2
 
+> **STATUS: ACTIVE PUBLIC CELEXTRIX RED-TEAM TARGET**
+>
+> Use this version for the live adversarial challenge. V3 and v4 remain public and executable, but their primary role is Mathematical Framework Establishment / theorem reference.
+
+**Finite-model boundary:** v2 concerns only the frozen finite `N/E/S/W` closed-route grammar, length 8 through 64, its exact four-channel target over `F_101`, and the pinned checker/faithfulness contract. It is not a claim of browser, account, DNS, hosting, cryptographic, physical, or unrestricted continuous-path security.
+
 This is a separately versioned proof-carrying checker for the public Impossible Return challenge.
 
 Protocol:
@@ -9,6 +15,12 @@ celextrix-impossible-return-faithful-v2
 ```
 
 The v1 challenge remains unchanged and reproducible. V2 adds an implementation-faithfulness gate before any Stage A or Stage B result may be recognized.
+
+## Why v2 is the red-team version
+
+V2 deliberately retains a genuine implementation surface: canonical parsing, exact arithmetic, three independent target realizations, observer agreement, frozen implementation identity, theorem reconstruction, and final checker adjudication must all remain coherent at once.
+
+The adversarial question is therefore meaningful: can the complete frozen implementation-faithfulness boundary be made to admit something it should reject?
 
 ## Core rule
 
@@ -125,8 +137,12 @@ node celextrix_impossible_return_v2/campaign.mjs --stage B --cases 50000 --seed 
 node celextrix_impossible_return_v2/checker.mjs celextrix_impossible_return_v2/submission.example.txt
 ```
 
+## Reporting
+
+Use **Issues -> CELEXTRIX v2 — Active Red-Team report**. Include the exact commit, canonical submission bytes, checker certificate, and reproduction argument.
+
 ## Claim boundary
 
 V2 proves implementation faithfulness only for the frozen finite route grammar, exact four-channel target, `F_101` arithmetic, declared observer maps, and pinned checker implementation.
 
-It does not prove browser, account, DNS, hosting, cryptographic, physical, or unrestricted continuous-path security.
+It does not prove browser, account, DNS, hosting, cryptographic, physical, or unrestricted continuous-path security. That boundary is part of the challenge contract and should remain visible in any public description.

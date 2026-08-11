@@ -1,17 +1,30 @@
-# PUBLIC RED-TEAM CHALLENGES
+# CELEXTRIX / RECOGNITION — RED-TEAM CHALLENGE + MATHEMATICAL FRAMEWORK
 
-Executable falsification challenges for Recognition / RNKE systems.
+Executable falsification challenges and mathematical framework-establishment references for Recognition / RNKE systems.
 
-The default branch is `main`. Released challenges live on `main` with explicit finite contracts, reproducible witnesses, adversarial tests, and dedicated GitHub Actions gates.
+> **FINITE-MODEL BOUNDARY:** Every result is limited to its declared finite protocol. For CELEXTRIX Impossible Return v2-v4, the admitted object is a closed route over `N,E,S,W` with length 8 through 64 under the published finite-field rules. These results do **not** claim browser, account, DNS, hosting, cryptographic, physical, or unrestricted continuous-path security.
+
+## Public entry point
+
+### **Active CELEXTRIX red-team target: Faithful Checker v2**
+
+If the goal is to attack a live adversarial system, start with **v2**. It preserves a genuine checker/parser/representation/implementation-faithfulness surface while keeping the mathematical observer frozen and auditable.
+
+The later versions remain public and executable, but their primary role is different:
+
+- **v3 = Mathematical Framework Establishment I — Authority Liberation**;
+- **v4 = Mathematical Framework Establishment II — Exact Route Identity / Theorem & Reference**.
+
+They should not be marketed as if they were the same kind of black-box red-team puzzle as v2. They establish what the framework becomes as checker authority and target blindness are explicitly removed.
+
+The default branch is `main`. All versions are intentionally preserved.
 
 ## Version lineage
-
-All versions are intentionally preserved. They are not interchangeable snapshots of one final checker; together they record the transition from falsification to mathematical framework establishment.
 
 ```text
 Phase I — Falsification and Engineering Lineage
 v1  blind observer + repaired finite observer
-v2  theorem-to-software implementation faithfulness
+v2  theorem-to-software implementation faithfulness  <-- ACTIVE RED-TEAM TARGET
 
 Phase II — Mathematical Framework Establishment
 v3  mathematical authority liberated from checker identity
@@ -22,9 +35,9 @@ The later versions should therefore be read as **Mathematical Framework Establis
 
 See [`MATHEMATICAL_FRAMEWORK_ESTABLISHMENT.md`](MATHEMATICAL_FRAMEWORK_ESTABLISHMENT.md) for the full establishment arc and claim boundary.
 
-## Challenge index
+## Public surfaces
 
-### 1. BREAK RECOGNITION v1
+### 1. BREAK RECOGNITION v1 — independent Recognition challenge
 
 Find a collision in a deliberately rank-deficient finite Recognition observer, then try to break its theorem-minimal four-channel repair.
 
@@ -46,7 +59,7 @@ BREAK_ACCEPTED_STAGE_A
 BREAK_ACCEPTED_STAGE_B
 ```
 
-### 2. BREAK CELEXTRIX: IMPOSSIBLE RETURN v1
+### 2. CELEXTRIX Impossible Return v1 — historical executable baseline
 
 > **Make CELEXTRIX forget how you returned.**
 
@@ -62,9 +75,9 @@ Start here:
 
 V1 remains frozen for reproducibility.
 
-### 3. CELEXTRIX IMPOSSIBLE RETURN — FAITHFUL CHECKER v2
+### 3. **ACTIVE RED-TEAM — CELEXTRIX Impossible Return Faithful Checker v2**
 
-V2 makes implementation faithfulness a prerequisite for theorem adjudication.
+V2 makes implementation faithfulness a prerequisite for theorem adjudication and is the primary CELEXTRIX version to attack.
 
 Before Stage A or Stage B can be evaluated, the checker requires:
 
@@ -82,7 +95,7 @@ over exact `BigInt` arithmetic in `F_101`, independent observer evaluation, froz
 T -> V T -> V^{-1} V T = T
 ```
 
-Stage A is explicitly the blindness control (`rank=3`, `nullity=1`). Stage B is the theorem-faithful repair (`rank=4`, `nullity=0`, determinant `12 mod 101`).
+Stage A is explicitly the blindness control (`rank=3`, `nullity=1`). Stage B is the theorem-faithful repair (`rank=4`, `nullity=0`, determinant `12 mod 101`). The remaining adversarial tension is the complete frozen implementation-faithfulness boundary: parser, arithmetic carrier, multiple target implementations, observer, theorem gate, Genesis/manifest binding, and final adjudication must all stay coherent.
 
 Start here:
 
@@ -92,10 +105,13 @@ Start here:
 - checker: `node celextrix_impossible_return_v2/checker.mjs celextrix_impossible_return_v2/submission.example.txt`
 - Stage-A control: `node celextrix_impossible_return_v2/campaign.mjs --stage A --cases 10000 --seed 117 --emit-witness`
 - Stage-B campaign: `node celextrix_impossible_return_v2/campaign.mjs --stage B --cases 50000 --seed 117`
+- report: **Issues -> CELEXTRIX v2 — Active Red-Team report**
 
 ### 4. MATHEMATICAL FRAMEWORK ESTABLISHMENT I — AUTHORITY LIBERATION v3
 
 V3 is the first explicit **Mathematical Framework Establishment** layer. It removes any particular checker identity from mathematical authority. The authoritative object is a portable proof transcript whose claims are closed by direct finite arithmetic.
+
+> **Public role: framework theorem/proof-authority reference — not the primary CELEXTRIX red-team target.**
 
 The theorem witnesses are constructive:
 
@@ -127,19 +143,13 @@ Start here:
 - generate proof: `node celextrix_impossible_return_v3/prover.mjs celextrix_impossible_return_v3/submission.example.txt > proof.json`
 - verify JS: `node celextrix_impossible_return_v3/verifier.mjs proof.json`
 - verify Python: `python3 celextrix_impossible_return_v3/verifier.py proof.json`
-
-V3 machine classes:
-
-```text
-BREAK_ACCEPTED_STAGE_A_CONTROL
-NO_BREAK
-PROOF_REJECTED
-THEOREM_CONTRADICTION_STAGE_B
-```
+- report: **Issues -> CELEXTRIX v3 — Framework theorem/reproducibility report**
 
 ### 5. MATHEMATICAL FRAMEWORK ESTABLISHMENT II — EXACT ROUTE IDENTITY v4
 
 V4 is the second **Mathematical Framework Establishment** layer. It closes the remaining `route -> target` compression. The target is now an injective encoding of the complete admitted route, not a finite set of route moments.
+
+> **Public role: theorem & reference implementation — not the primary CELEXTRIX red-team target.**
 
 For `gamma=d_0...d_{L-1}` with `N=1,E=2,S=3,W=4`, v4 defines
 
@@ -174,30 +184,29 @@ Start here:
 - verify JS: `node celextrix_impossible_return_v4/verifier.mjs proof.txt`
 - verify Python: `python3 celextrix_impossible_return_v4/verifier.py proof.txt`
 - Stage-B campaign: `node celextrix_impossible_return_v4/campaign.mjs --cases 50000 --seed 117`
+- report: **Issues -> CELEXTRIX v4 — Framework theorem/reference report**
 
-V4 machine classes:
+## Why every version remains public
+
+The sequence itself is evidence:
 
 ```text
-BREAK_ACCEPTED_STAGE_A_CONTROL
-NO_BREAK
-PROOF_REJECTED
-THEOREM_CONTRADICTION_STAGE_B
+v1  blindness and repair
+v2  theorem-to-software faithfulness
+v3  mathematical authority liberated from checker identity
+v4  exact object identity made injective and reconstructible
 ```
 
-## What counts as a break
-
-For v1/v2, a report must reproduce the released protocol's checker predicate on the declared state. For v3/v4, mathematical authority is the published finite relation plus explicit witnesses; no particular checker binary or file hash defines truth.
-
-For v4, a Stage-B contradiction must provide two distinct admitted routes with the same Stage-B observer after the exact route identity round trip closes.
-
-Unsupported prose, malformed input, attacks on unrelated services, or merely making a program crash are not mathematical breaks.
+Deleting earlier versions would erase the falsification path that motivated the later framework. Keeping them makes the progression auditable.
 
 ## Reporting
 
-Open the repository's **Issues -> New issue** page and choose the challenge-specific form where available. A v4 theorem-contradiction report should include the canonical submission, complete fixed-format proof transcript, and independently reproduced verifier outputs.
+Use the **v2 Active Red-Team** Issue Form for the primary CELEXTRIX adversarial challenge. V3/v4 forms are retained for theorem contradictions, specification ambiguities, reproducibility failures, proof-transcript defects, or independent-verifier disagreements. They are scientific evidence channels, not an invitation to overstate v3/v4 as open-ended security challenges.
 
 Security-sensitive findings that could materially endanger an unrelated live service should not be posted as a public challenge report.
 
 ## Claim boundary
 
-These are finite mathematical/executable challenges. No software on physical hardware can eliminate all machine assumptions. The **Mathematical Framework Establishment** claim is correspondingly finite: v3 establishes checker-independent mathematical authority for its declared relation; v4 establishes exact route identity for the admitted `N,E,S,W` grammar and length bound, with a published injective code and invertible Stage-B observer. It is not a claim about unrestricted continuous paths, browser security, account security, hosting security, or physical realization.
+The boundary is part of the result, not a disclaimer to hide.
+
+The **Mathematical Framework Establishment** claim is finite: v3 establishes checker-independent mathematical authority for its declared relation; v4 establishes exact route identity for the admitted `N,E,S,W` grammar and length bound, with a published injective code and invertible Stage-B observer. Nothing here by itself proves unrestricted continuous paths, browser security, account security, DNS/hosting security, cryptographic security, or physical realization.

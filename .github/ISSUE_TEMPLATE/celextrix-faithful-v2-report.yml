@@ -1,14 +1,14 @@
-name: CELEXTRIX Faithful Checker v2 report
-description: Report a checker-confirmed Stage-A control witness, checker-faithfulness defect, or Stage-B theorem contradiction
-title: "[CELEXTRIX V2] "
+name: CELEXTRIX v2 — Active Red-Team report
+description: Report a checker-confirmed v2 control witness, checker-faithfulness defect, or Stage-B theorem contradiction
+title: "[CELEXTRIX V2 RED TEAM] "
 labels: []
 body:
   - type: markdown
     attributes:
       value: |
-        Use this form only for `celextrix-impossible-return-faithful-v2`.
+        **V2 is the active public CELEXTRIX red-team target.** Use this form only for `celextrix-impossible-return-faithful-v2`.
 
-        Stage A is an intentional blindness control. Stage B is theorem-faithful only after the implementation-faithfulness and theorem gates close.
+        Stage A is an intentional blindness control. Stage B is theorem-faithful only after the implementation-faithfulness and theorem gates close. The challenge is bounded to the frozen finite protocol; it is not authorization to attack unrelated services, accounts, hosting, or devices.
 
         Do not include passwords, tokens, private keys, personal data, destructive payloads, or attacks against unrelated services.
 
@@ -66,5 +66,5 @@ body:
           required: true
         - label: I did not modify Genesis, the implementation manifest, checker files, or the admitted wire grammar.
           required: true
-        - label: This report contains no credentials, secrets, personal data, or destructive payloads.
+        - label: This report concerns only the authorized finite challenge and contains no credentials, secrets, personal data, or destructive payloads.
           required: true
