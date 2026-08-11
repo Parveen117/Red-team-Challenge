@@ -1,14 +1,16 @@
-name: CELEXTRIX Route Identity v4 report
-description: Report a checker-confirmed Stage-B contradiction or a v4 proof-transcript defect
-title: "[CELEXTRIX V4] "
+name: CELEXTRIX v4 — Framework theorem/reference report
+description: Report a theorem contradiction, specification ambiguity, transcript defect, or verifier disagreement for Exact Route Identity v4
+title: "[CELEXTRIX V4 FRAMEWORK] "
 labels: []
 body:
   - type: markdown
     attributes:
       value: |
-        Report only non-secret evidence against `celextrix-impossible-return-route-identity-v4`.
+        **V4 is a theorem/reference endpoint of the mathematical framework, not the primary CELEXTRIX red-team challenge.** Use v2 for the active adversarial challenge.
 
-        Stage A is an intentionally blind control. A Stage-B theorem contradiction requires two distinct admitted routes with the same Stage-B observer after the exact route-identity transcript closes.
+        V4 intentionally publishes an injective exact-route code and an explicit Stage-B inverse. A contradiction would be scientifically important, but this form is an evidence channel for the framework rather than a black-box challenge surface.
+
+        Report only non-secret evidence concerning `celextrix-impossible-return-route-identity-v4` and its published finite model.
 
   - type: dropdown
     id: classification
@@ -17,6 +19,9 @@ body:
       options:
         - Stage B theorem contradiction
         - Proof transcript / verifier faithfulness defect
+        - Specification ambiguity
+        - Independent verifier disagreement
+        - Reproducibility failure
         - Stage A control reproduction
     validations:
       required: true
@@ -49,8 +54,8 @@ body:
   - type: textarea
     id: argument
     attributes:
-      label: Mathematical argument
-      description: Explain which exact v4 equation or round-trip obligation is contradicted.
+      label: Mathematical / reproducibility argument
+      description: Explain which exact v4 equation, route-identity round trip, inverse obligation, specification clause, or reproduction obligation is contradicted.
     validations:
       required: true
 
@@ -60,6 +65,8 @@ body:
       label: Attestations
       options:
         - label: I did not change the v4 equations or admitted route grammar.
+          required: true
+        - label: The report concerns only the published finite v4 framework relation.
           required: true
         - label: This report contains no credentials, secrets, personal data, or destructive payloads.
           required: true
