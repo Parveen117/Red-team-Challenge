@@ -1,0 +1,75 @@
+name: CELEXTRIX Mathematical Liberation v3 report
+description: Report a proof-transcript contradiction or verifier disagreement for the v3 finite relation
+title: "[CELEXTRIX V3] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        V3 mathematical authority is the published finite relation plus the proof transcript, not any single checker binary or file hash.
+
+        Do not include credentials, secrets, personal data, destructive payloads, or attacks against unrelated systems.
+
+  - type: dropdown
+    id: class
+    attributes:
+      label: Report class
+      options:
+        - Stage B theorem contradiction
+        - Independent verifier disagreement
+        - Proof transcript validation defect
+        - Specification ambiguity
+    validations:
+      required: true
+
+  - type: textarea
+    id: submission
+    attributes:
+      label: Canonical submission
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: proof
+    attributes:
+      label: Complete canonical proof transcript
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: js
+    attributes:
+      label: JavaScript verifier output
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: python
+    attributes:
+      label: Python or other independent verifier output
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: argument
+    attributes:
+      label: Mathematical argument
+      description: Explain exactly which finite equation or witness relation closes or fails.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestations
+    attributes:
+      label: Attestations
+      options:
+        - label: The report concerns only the published finite v3 relation.
+          required: true
+        - label: I included the complete non-secret proof transcript needed for independent reproduction.
+          required: true
+        - label: This report contains no credentials, secrets, personal data, or destructive payloads.
+          required: true
