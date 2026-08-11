@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+import { buildProof } from "./prover.mjs";
+import { verifyProofObject } from "./verifier.mjs";
+import { canonicalJson, SUBMISSION_PREFIX } from "./protocol.mjs";
+const D={N:[0,1],E:[1,0],S:[0,-1],W:[-1,0]},S="NESW";
+function rng(seed){let x=seed>>>0;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return x>>>0}}
+function closed(next,n=12){let x=0,y=0,s="";for(let i=0;i<n;i++){const c=S[next()%4];s+=c;x+=D[c][0];y+=D[c][1]}if(x>0)s+="W".repeat(x);if(x<0)s+="E".repeat(-x);if(y>0)s+="S".repeat(y);if(y<0)s+="N".repeat(-y);return s}
+export function run(stage="B",cases=50000,seed=117,emit=false){const next=rng(seed),seen=new Map();let witness=null,collisions=0;for(let i=0;i<cases;i++){const r=closed(next);const raw=`${SUBMISSION_PREFIX}|${stage}|${r}|NNEESSWW\n`;let p;try{p=buildProof(raw)}catch{continue}const key=p.left.observer.join(":");const tar=p.left.target.join(":");const q=seen.get(key);if(q&&q.route!==r&&q.target!==tar){collisions++;if(!witness){const rr=`${SUBMISSION_PREFIX}|${stage}|${q.route}|${r}\n`;const proof=buildProof(rr);const verdict=verifyProofObject(JSON.parse(canonicalJson(proof)));witness={submission:rr.trimEnd(),result:verdict.result}}}else if(!q)seen.set(key,{route:r,target:tar})}return {protocol:"celextrix-impossible-return-math-liberation-v3",stage,cases,seed,target_distinct_observer_collisions:collisions,witness_found:Boolean(witness),...(emit&&witness?{witness}: {})}}
+if(process.argv[1]&&process.argv[1].endsWith("campaign.mjs")){let stage="B",cases=50000,seed=117,emit=false;for(let i=2;i<process.argv.length;i++){if(process.argv[i]==="--stage")stage=process.argv[++i];else if(process.argv[i]==="--cases")cases=Number(process.argv[++i]);else if(process.argv[i]==="--seed")seed=Number(process.argv[++i]);else if(process.argv[i]==="--emit-witness")emit=true;}process.stdout.write(canonicalJson(run(stage,cases,seed,emit))+"\n")}

@@ -1,0 +1,67 @@
+name: CELEXTRIX Mathematical Liberation v3
+
+on:
+  pull_request:
+    paths:
+      - "celextrix_impossible_return_v3/**"
+      - ".github/workflows/celextrix-impossible-return-v3.yml"
+      - "README.md"
+  push:
+    branches: [main]
+    paths:
+      - "celextrix_impossible_return_v3/**"
+      - ".github/workflows/celextrix-impossible-return-v3.yml"
+      - "README.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  liberation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+        python: ['3.11', '3.13']
+    steps:
+      - name: Checkout exact subject
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: No package or solver surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e celextrix_impossible_return_v3/package.json
+          test ! -e celextrix_impossible_return_v3/node_modules
+          test -z "$(find celextrix_impossible_return_v3 -type f \( -name '*.lean' -o -name '*.wasm' \) -print -quit)"
+          ! grep -R -n -E '(^|[[:space:]])(npm|pnpm|pip)[[:space:]]+(install|add)|(^|[[:space:]])(curl|wget)[[:space:]]' celextrix_impossible_return_v3
+          ! grep -R -n -E '(^|[[:space:]])(import|from)[[:space:]]+(numpy|sympy|z3)([[:space:].]|$)' celextrix_impossible_return_v3
+      - name: Full v3 tests
+        run: node celextrix_impossible_return_v3/tests.mjs
+      - name: Generate portable proof transcript
+        run: node celextrix_impossible_return_v3/prover.mjs celextrix_impossible_return_v3/submission.example.txt > /tmp/proof.json
+      - name: JS verifier
+        run: node celextrix_impossible_return_v3/verifier.mjs /tmp/proof.json > /tmp/js.out
+      - name: Python verifier
+        run: python3 celextrix_impossible_return_v3/verifier.py /tmp/proof.json > /tmp/py.out
+      - name: Independent verifiers agree byte-for-byte
+        run: diff -u /tmp/js.out /tmp/py.out
+      - name: Stage A constructive blindness control
+        run: node celextrix_impossible_return_v3/campaign.mjs --stage A --cases 10000 --seed 117 --emit-witness
+      - name: Stage B 50k contradiction search
+        run: |
+          out="$(node celextrix_impossible_return_v3/campaign.mjs --stage B --cases 50000 --seed 117)"
+          echo "$out"
+          node -e 'const x=JSON.parse(process.argv[1]); if(x.target_distinct_observer_collisions!==0) process.exit(1)' "$out"

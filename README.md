@@ -2,7 +2,7 @@
 
 Executable falsification challenges for Recognition / RNKE systems.
 
-The default branch is `main`. Every released challenge lives on `main`, has a frozen machine-readable contract, a local checker, adversarial tests, a dedicated GitHub Actions gate, and a challenge-specific break-report Issue Form.
+The default branch is `main`. Released challenges live on `main` with explicit finite contracts, reproducible witnesses, adversarial tests, and dedicated GitHub Actions gates.
 
 ## Challenge index
 
@@ -74,31 +74,59 @@ Start here:
 - checker: `node celextrix_impossible_return_v2/checker.mjs celextrix_impossible_return_v2/submission.example.txt`
 - Stage-A control: `node celextrix_impossible_return_v2/campaign.mjs --stage A --cases 10000 --seed 117 --emit-witness`
 - Stage-B campaign: `node celextrix_impossible_return_v2/campaign.mjs --stage B --cases 50000 --seed 117`
-- report: **Issues -> CELEXTRIX Faithful Checker v2 report**
 
-Important machine classes:
+### 4. CELEXTRIX IMPOSSIBLE RETURN — MATHEMATICAL LIBERATION v3
+
+V3 removes any particular checker identity from mathematical authority. The authoritative object is a portable proof transcript whose claims are closed by direct finite arithmetic.
+
+The theorem witnesses are constructive:
+
+```text
+Stage A: nonzero k with V_A k = 0
+Stage B: W V_B = I and V_B W = I
+```
+
+Therefore Stage A blindness is witnessed directly, while Stage B injectivity is witnessed directly—without trusting determinant code, rank code, an inversion algorithm, a Genesis hash, an implementation-manifest hash, a package manager, solver, network service, or external theorem prover.
+
+The repository ships two replaceable reference verifiers:
+
+```text
+JavaScript / BigInt / incremental route evaluation
+Python / int / batch vertex evaluation
+```
+
+CI requires their verdicts to match byte-for-byte across multiple Node and Python runtimes. The proof transcript remains independently checkable even if one verifier is replaced.
+
+Start here:
+
+- [`celextrix_impossible_return_v3/README.md`](celextrix_impossible_return_v3/README.md)
+- mathematical spec: [`celextrix_impossible_return_v3/SPEC.md`](celextrix_impossible_return_v3/SPEC.md)
+- tests: `node celextrix_impossible_return_v3/tests.mjs`
+- generate proof: `node celextrix_impossible_return_v3/prover.mjs celextrix_impossible_return_v3/submission.example.txt > proof.json`
+- verify JS: `node celextrix_impossible_return_v3/verifier.mjs proof.json`
+- verify Python: `python3 celextrix_impossible_return_v3/verifier.py proof.json`
+
+V3 machine classes:
 
 ```text
 BREAK_ACCEPTED_STAGE_A_CONTROL
 NO_BREAK
-CHECKER_FAITHFULNESS_FAILURE
+PROOF_REJECTED
 THEOREM_CONTRADICTION_STAGE_B
 ```
 
-A Stage-A collision is expected evidence of the declared blind direction. A Stage-B target-distinct observer collision is not treated as an ordinary implementation break; after all faithfulness gates close it is classified as a theorem contradiction.
-
 ## What counts as a break
 
-A valid report must be produced by the released checker on the exact reported commit and satisfy that challenge's frozen grammar and predicate.
+For v1/v2, a report must reproduce the released protocol's checker predicate on the declared state. For v3, mathematical authority is the published finite relation plus a valid proof transcript; no particular checker binary or file hash defines truth.
 
-Unsupported prose, malformed input, unknown rules, changing Genesis, attacking unrelated services, or merely making the program crash are not accepted unless the challenge rules explicitly classify them as a reportable implementation-faithfulness defect.
+Unsupported prose, malformed input, attacks on unrelated services, or merely making a program crash are not mathematical breaks.
 
 ## Reporting
 
-Open the repository's **Issues -> New issue** page and choose the challenge-specific form.
+Open the repository's **Issues -> New issue** page and choose the challenge-specific form where available. A v3 theorem-contradiction report should include the canonical submission, complete proof transcript, and independently reproduced verifier outputs.
 
 Security-sensitive findings that could materially endanger an unrelated live service should not be posted as a public challenge report.
 
 ## Claim boundary
 
-These are finite, executable challenges. Their guarantees are limited to each frozen grammar, target, arithmetic model, observer, and checker identity. They are not universal browser, account, DNS, hosting, cryptographic, physical, or unrestricted mathematical-security claims.
+These are finite mathematical/executable challenges. No software on physical hardware can eliminate all machine assumptions. V3's stronger claim is narrower and cleaner: no specific checker, hash, runtime, package, hosted service, or external prover is part of the mathematical authority. The truth relation is the finite mathematics plus explicit witnesses.
