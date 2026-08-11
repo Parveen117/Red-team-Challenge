@@ -1,12 +1,14 @@
-name: CELEXTRIX Mathematical Liberation v3 report
-description: Report a proof-transcript contradiction or verifier disagreement for the v3 finite relation
-title: "[CELEXTRIX V3] "
+name: CELEXTRIX v3 — Framework theorem/reproducibility report
+description: Report a proof-transcript contradiction, specification ambiguity, or independent-verifier disagreement for Framework Establishment I
+ title: "[CELEXTRIX V3 FRAMEWORK] "
 labels: []
 body:
   - type: markdown
     attributes:
       value: |
-        V3 mathematical authority is the published finite relation plus the proof transcript, not any single checker binary or file hash.
+        **V3 is a mathematical framework-establishment reference, not the primary CELEXTRIX red-team challenge.** Use v2 for the active adversarial challenge.
+
+        V3 mathematical authority is the published finite relation plus the proof transcript, not any single checker binary or file hash. This form is retained for theorem contradictions, specification ambiguities, proof-transcript defects, and independent-verifier disagreements.
 
         Do not include credentials, secrets, personal data, destructive payloads, or attacks against unrelated systems.
 
@@ -19,6 +21,7 @@ body:
         - Independent verifier disagreement
         - Proof transcript validation defect
         - Specification ambiguity
+        - Reproducibility failure
     validations:
       required: true
 
@@ -57,8 +60,8 @@ body:
   - type: textarea
     id: argument
     attributes:
-      label: Mathematical argument
-      description: Explain exactly which finite equation or witness relation closes or fails.
+      label: Mathematical / reproducibility argument
+      description: Explain exactly which published finite equation, witness relation, specification clause, or reproduction obligation closes or fails.
     validations:
       required: true
 
@@ -67,7 +70,7 @@ body:
     attributes:
       label: Attestations
       options:
-        - label: The report concerns only the published finite v3 relation.
+        - label: The report concerns only the published finite v3 framework relation.
           required: true
         - label: I included the complete non-secret proof transcript needed for independent reproduction.
           required: true
