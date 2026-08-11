@@ -1,4 +1,4 @@
-# CELEXTRIX Impossible Return — Exact Route Identity v4
+# CELEXTRIX Impossible Return — Mathematical Framework Establishment II: Exact Route Identity v4
 
 Protocol:
 
@@ -6,7 +6,15 @@ Protocol:
 celextrix-impossible-return-route-identity-v4
 ```
 
-V4 closes the remaining mathematical compression in earlier versions. The target is no longer a finite collection of route moments. It is an **injective encoding of the complete admitted route**.
+V4 is the second **Mathematical Framework Establishment** layer. V3 establishes mathematical authority independently of checker identity; V4 establishes that the represented target itself is an **injective identity of the complete admitted route**.
+
+Framework principle established here:
+
+> **Recognition is complete only when the represented target is itself injective on the objects whose identity is being claimed.**
+
+See [`../MATHEMATICAL_FRAMEWORK_ESTABLISHMENT.md`](../MATHEMATICAL_FRAMEWORK_ESTABLISHMENT.md) for the complete version arc.
+
+V4 closes the remaining mathematical compression in earlier versions. The target is no longer a finite collection of route moments. It is an injective encoding of the complete admitted route.
 
 ## Exact route identity
 
@@ -159,6 +167,6 @@ node celextrix_impossible_return_v4/campaign.mjs --cases 50000 --seed 117
 
 ## Claim boundary
 
-V4 proves exact route identity only for the admitted finite alphabet `N,E,S,W`, closed routes of length 8 through 64, the published base-5 sentinel encoding, 23 base-101 limbs, and the declared Stage-A/Stage-B linear maps.
+V4 establishes exact route identity only for the admitted finite alphabet `N,E,S,W`, closed routes of length 8 through 64, the published base-5 sentinel encoding, 23 base-101 limbs, and the declared Stage-A/Stage-B linear maps.
 
 It does not claim unrestricted continuous-path identity, browser security, account security, hosting security, physical realization, or independence from the correctness of arithmetic performed by a physical machine.

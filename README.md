@@ -4,6 +4,24 @@ Executable falsification challenges for Recognition / RNKE systems.
 
 The default branch is `main`. Released challenges live on `main` with explicit finite contracts, reproducible witnesses, adversarial tests, and dedicated GitHub Actions gates.
 
+## Version lineage
+
+All versions are intentionally preserved. They are not interchangeable snapshots of one final checker; together they record the transition from falsification to mathematical framework establishment.
+
+```text
+Phase I — Falsification and Engineering Lineage
+v1  blind observer + repaired finite observer
+v2  theorem-to-software implementation faithfulness
+
+Phase II — Mathematical Framework Establishment
+v3  mathematical authority liberated from checker identity
+v4  exact route identity made injective and reconstructible
+```
+
+The later versions should therefore be read as **Mathematical Framework Establishment**, not merely as patches to earlier implementations. V3 establishes that the mathematical relation and its witnesses—not a particular checker—carry authority. V4 establishes that the represented target itself is an injective identity of the complete admitted object.
+
+See [`MATHEMATICAL_FRAMEWORK_ESTABLISHMENT.md`](MATHEMATICAL_FRAMEWORK_ESTABLISHMENT.md) for the full establishment arc and claim boundary.
+
 ## Challenge index
 
 ### 1. BREAK RECOGNITION v1
@@ -75,9 +93,9 @@ Start here:
 - Stage-A control: `node celextrix_impossible_return_v2/campaign.mjs --stage A --cases 10000 --seed 117 --emit-witness`
 - Stage-B campaign: `node celextrix_impossible_return_v2/campaign.mjs --stage B --cases 50000 --seed 117`
 
-### 4. CELEXTRIX IMPOSSIBLE RETURN — MATHEMATICAL LIBERATION v3
+### 4. MATHEMATICAL FRAMEWORK ESTABLISHMENT I — AUTHORITY LIBERATION v3
 
-V3 removes any particular checker identity from mathematical authority. The authoritative object is a portable proof transcript whose claims are closed by direct finite arithmetic.
+V3 is the first explicit **Mathematical Framework Establishment** layer. It removes any particular checker identity from mathematical authority. The authoritative object is a portable proof transcript whose claims are closed by direct finite arithmetic.
 
 The theorem witnesses are constructive:
 
@@ -97,6 +115,10 @@ Python / int / batch vertex evaluation
 
 CI requires their verdicts to match byte-for-byte across multiple Node and Python runtimes. The proof transcript remains independently checkable even if one verifier is replaced.
 
+Framework principle established in v3:
+
+> **Mathematical authority belongs to the relation and its witnesses, not to the machinery used to read them.**
+
 Start here:
 
 - [`celextrix_impossible_return_v3/README.md`](celextrix_impossible_return_v3/README.md)
@@ -115,9 +137,9 @@ PROOF_REJECTED
 THEOREM_CONTRADICTION_STAGE_B
 ```
 
-### 5. CELEXTRIX IMPOSSIBLE RETURN — EXACT ROUTE IDENTITY v4
+### 5. MATHEMATICAL FRAMEWORK ESTABLISHMENT II — EXACT ROUTE IDENTITY v4
 
-V4 closes the remaining `route -> target` compression. The target is now an injective encoding of the complete admitted route, not a finite set of route moments.
+V4 is the second **Mathematical Framework Establishment** layer. It closes the remaining `route -> target` compression. The target is now an injective encoding of the complete admitted route, not a finite set of route moments.
 
 For `gamma=d_0...d_{L-1}` with `N=1,E=2,S=3,W=4`, v4 defines
 
@@ -136,6 +158,10 @@ is injective. Stage A deliberately exposes 22 linear observations and has a vali
 ```text
 gamma -> R(gamma) -> B R(gamma) -> R(gamma) -> gamma.
 ```
+
+Framework principle established in v4:
+
+> **Recognition is complete only when the represented target is itself injective on the objects whose identity is being claimed.**
 
 V4 also removes JSON from the proof-adjudication path. Its proof transcript is a fixed ASCII line protocol with canonical integers and fixed vector lengths.
 
@@ -174,4 +200,4 @@ Security-sensitive findings that could materially endanger an unrelated live ser
 
 ## Claim boundary
 
-These are finite mathematical/executable challenges. No software on physical hardware can eliminate all machine assumptions. V4's strongest claim is still finite: exact route identity for the admitted `N,E,S,W` grammar and length bound, with a published injective code and invertible Stage-B observer. It is not a claim about unrestricted continuous paths, browser security, account security, hosting security, or physical realization.
+These are finite mathematical/executable challenges. No software on physical hardware can eliminate all machine assumptions. The **Mathematical Framework Establishment** claim is correspondingly finite: v3 establishes checker-independent mathematical authority for its declared relation; v4 establishes exact route identity for the admitted `N,E,S,W` grammar and length bound, with a published injective code and invertible Stage-B observer. It is not a claim about unrestricted continuous paths, browser security, account security, hosting security, or physical realization.
