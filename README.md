@@ -115,18 +115,63 @@ PROOF_REJECTED
 THEOREM_CONTRADICTION_STAGE_B
 ```
 
+### 5. CELEXTRIX IMPOSSIBLE RETURN — EXACT ROUTE IDENTITY v4
+
+V4 closes the remaining `route -> target` compression. The target is now an injective encoding of the complete admitted route, not a finite set of route moments.
+
+For `gamma=d_0...d_{L-1}` with `N=1,E=2,S=3,W=4`, v4 defines
+
+```text
+C(gamma)=5^L + sum_i d_i 5^i.
+```
+
+For `L<=64`, the complete code fits exactly in 23 base-101 limbs, so
+
+```text
+gamma -> C(gamma) -> R(gamma) in F_101^23
+```
+
+is injective. Stage A deliberately exposes 22 linear observations and has a valid route-level blind pair. Stage B adds the missing coordinate and has an explicit two-sided inverse, closing the full loop:
+
+```text
+gamma -> R(gamma) -> B R(gamma) -> R(gamma) -> gamma.
+```
+
+V4 also removes JSON from the proof-adjudication path. Its proof transcript is a fixed ASCII line protocol with canonical integers and fixed vector lengths.
+
+Start here:
+
+- [`celextrix_impossible_return_v4/README.md`](celextrix_impossible_return_v4/README.md)
+- theorem: [`celextrix_impossible_return_v4/THEOREM.md`](celextrix_impossible_return_v4/THEOREM.md)
+- tests: `node celextrix_impossible_return_v4/tests.mjs`
+- generate proof: `node celextrix_impossible_return_v4/prover.mjs celextrix_impossible_return_v4/submission.example.txt > proof.txt`
+- verify JS: `node celextrix_impossible_return_v4/verifier.mjs proof.txt`
+- verify Python: `python3 celextrix_impossible_return_v4/verifier.py proof.txt`
+- Stage-B campaign: `node celextrix_impossible_return_v4/campaign.mjs --cases 50000 --seed 117`
+
+V4 machine classes:
+
+```text
+BREAK_ACCEPTED_STAGE_A_CONTROL
+NO_BREAK
+PROOF_REJECTED
+THEOREM_CONTRADICTION_STAGE_B
+```
+
 ## What counts as a break
 
-For v1/v2, a report must reproduce the released protocol's checker predicate on the declared state. For v3, mathematical authority is the published finite relation plus a valid proof transcript; no particular checker binary or file hash defines truth.
+For v1/v2, a report must reproduce the released protocol's checker predicate on the declared state. For v3/v4, mathematical authority is the published finite relation plus explicit witnesses; no particular checker binary or file hash defines truth.
+
+For v4, a Stage-B contradiction must provide two distinct admitted routes with the same Stage-B observer after the exact route identity round trip closes.
 
 Unsupported prose, malformed input, attacks on unrelated services, or merely making a program crash are not mathematical breaks.
 
 ## Reporting
 
-Open the repository's **Issues -> New issue** page and choose the challenge-specific form where available. A v3 theorem-contradiction report should include the canonical submission, complete proof transcript, and independently reproduced verifier outputs.
+Open the repository's **Issues -> New issue** page and choose the challenge-specific form where available. A v4 theorem-contradiction report should include the canonical submission, complete fixed-format proof transcript, and independently reproduced verifier outputs.
 
 Security-sensitive findings that could materially endanger an unrelated live service should not be posted as a public challenge report.
 
 ## Claim boundary
 
-These are finite mathematical/executable challenges. No software on physical hardware can eliminate all machine assumptions. V3's stronger claim is narrower and cleaner: no specific checker, hash, runtime, package, hosted service, or external prover is part of the mathematical authority. The truth relation is the finite mathematics plus explicit witnesses.
+These are finite mathematical/executable challenges. No software on physical hardware can eliminate all machine assumptions. V4's strongest claim is still finite: exact route identity for the admitted `N,E,S,W` grammar and length bound, with a published injective code and invertible Stage-B observer. It is not a claim about unrestricted continuous paths, browser security, account security, hosting security, or physical realization.
