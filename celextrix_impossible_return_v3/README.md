@@ -1,8 +1,16 @@
-# CELEXTRIX Impossible Return — Mathematical Liberation v3
+# CELEXTRIX Impossible Return — Mathematical Framework Establishment I: Authority Liberation v3
 
 Protocol: `celextrix-impossible-return-math-liberation-v3`.
 
-V3 removes **checker identity** from the mathematical trust boundary. The authoritative object is a finite proof transcript. Reference software is replaceable: any independent implementation that checks the same equations can verify the transcript.
+V3 marks the first **Mathematical Framework Establishment** layer in the version lineage. Earlier versions establish the falsification surface and theorem-to-software faithfulness. V3 changes the authority structure itself: it removes **checker identity** from the mathematical trust boundary.
+
+The authoritative object is a finite proof transcript. Reference software is replaceable: any independent implementation that checks the same equations can verify the transcript.
+
+Framework principle established here:
+
+> **Mathematical authority belongs to the relation and its witnesses, not to the machinery used to read them.**
+
+See [`../MATHEMATICAL_FRAMEWORK_ESTABLISHMENT.md`](../MATHEMATICAL_FRAMEWORK_ESTABLISHMENT.md) for the complete version arc.
 
 ## Mathematical root
 
@@ -50,4 +58,4 @@ node celextrix_impossible_return_v3/tests.mjs
 
 ## Claim boundary
 
-No software running on physical hardware can literally eliminate all machine/runtime assumptions. V3 instead removes **any particular checker, hash, runtime, package, or external service from mathematical authority**. The challenge truth is the finite relation itself plus explicit algebraic witnesses.
+No software running on physical hardware can literally eliminate all machine/runtime assumptions. V3 instead establishes, within this declared finite model, that **no particular checker, hash, runtime, package, or external service is part of mathematical authority**. The challenge truth is the finite relation itself plus explicit algebraic witnesses.
