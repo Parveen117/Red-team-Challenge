@@ -1,0 +1,65 @@
+name: CELEXTRIX Route Identity v4 report
+description: Report a checker-confirmed Stage-B contradiction or a v4 proof-transcript defect
+title: "[CELEXTRIX V4] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report only non-secret evidence against `celextrix-impossible-return-route-identity-v4`.
+
+        Stage A is an intentionally blind control. A Stage-B theorem contradiction requires two distinct admitted routes with the same Stage-B observer after the exact route-identity transcript closes.
+
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Report class
+      options:
+        - Stage B theorem contradiction
+        - Proof transcript / verifier faithfulness defect
+        - Stage A control reproduction
+    validations:
+      required: true
+
+  - type: textarea
+    id: submission
+    attributes:
+      label: Canonical submission
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: transcript
+    attributes:
+      label: Complete proof transcript
+      description: Paste the exact non-secret fixed-format transcript.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: verdict
+    attributes:
+      label: Verifier output
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: argument
+    attributes:
+      label: Mathematical argument
+      description: Explain which exact v4 equation or round-trip obligation is contradicted.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestations
+    attributes:
+      label: Attestations
+      options:
+        - label: I did not change the v4 equations or admitted route grammar.
+          required: true
+        - label: This report contains no credentials, secrets, personal data, or destructive payloads.
+          required: true
