@@ -1,12 +1,12 @@
 {
   "files": {
-    "checker.mjs": "f77aeab24a3b56059308ed88e94d0c56b2a1a48d01c6fc0f0255823312d2f4d8",
-    "faithfulness.mjs": "54b527685d2ccf0769a1ebd9784abfa7ea3b86286b2ec9a012ccad5910a590da",
-    "observer.mjs": "b892cc51ab8707a887599618b9b5832bed33f5fab0bd3d3a9d3508affabe3058",
-    "oracle.mjs": "374053c70d0a18332ddbf15a1b727b7665489541e5f6c9c9d2ea3dc39f1884c7",
-    "reference.mjs": "307513a1e27de91024aacd213249f97c400646df2877aff86044a23b50c38544",
-    "subject.mjs": "b58634a7514b016517ea06069f7aec9af02a1e264bc308a5d1bbeb5cf8825dcb",
-    "wire.mjs": "1ab29f89704b38fd305231578a40d3882911793929400892947ef1beb8dcfcf6"
+    "checker.mjs": "175aecc39e6124b72dee0dccab107b8aebd38d43c7d42cedc114d4093716f2bc",
+    "faithfulness.mjs": "4715cbb0f64b3c56b7e7da3d4cc9e2b5fdf4150c3678e70fd9fd7311eadd4c69",
+    "observer.mjs": "6c0012193e1417b3f27b7dfeddffff4bfa9f286d8a96b6934addc340b8b786f6",
+    "oracle.mjs": "7d15706ed21eaaac2a026cc286f6cd95f730ab4949df6b1c984f3c5f4c155188",
+    "reference.mjs": "e9cf891f177b65c6c92b917e6a9a459968b02858a39ff8141dd006362b7d4f57",
+    "subject.mjs": "4d2140bd59d7efaa41fe337b9c37c2371ef10650746ab22302b729b0488a6897",
+    "wire.mjs": "d71711bba23de73798eb30696649fee0d8cfa7ddefec5a439c49ed970ec461e2"
   },
   "manifest_version": "critical-runtime-sha256-v1",
   "protocol": "celextrix-impossible-return-faithful-v2"
