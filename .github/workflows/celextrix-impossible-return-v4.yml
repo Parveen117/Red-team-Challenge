@@ -1,0 +1,85 @@
+name: CELEXTRIX Exact Route Identity v4
+
+on:
+  pull_request:
+    paths:
+      - "celextrix_impossible_return_v4/**"
+      - ".github/workflows/celextrix-impossible-return-v4.yml"
+      - ".github/ISSUE_TEMPLATE/celextrix-route-identity-v4.yml"
+      - "README.md"
+      - ".gitattributes"
+  push:
+    branches: [main]
+    paths:
+      - "celextrix_impossible_return_v4/**"
+      - ".github/workflows/celextrix-impossible-return-v4.yml"
+      - ".github/ISSUE_TEMPLATE/celextrix-route-identity-v4.yml"
+      - "README.md"
+      - ".gitattributes"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  route-identity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+        python: ['3.11', '3.13']
+    steps:
+      - name: Checkout exact challenge state
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: No package installation surface
+        run: |
+          test ! -e celextrix_impossible_return_v4/package.json
+          test ! -e celextrix_impossible_return_v4/node_modules
+          test ! -e celextrix_impossible_return_v4/requirements.txt
+          test ! -e celextrix_impossible_return_v4/pyproject.toml
+
+      - name: Full v4 tests
+        run: node celextrix_impossible_return_v4/tests.mjs
+
+      - name: Generate Stage-B proof transcript
+        run: node celextrix_impossible_return_v4/prover.mjs celextrix_impossible_return_v4/submission.example.txt > /tmp/proof-b.txt
+
+      - name: JavaScript verifier
+        run: node celextrix_impossible_return_v4/verifier.mjs /tmp/proof-b.txt > /tmp/js-b.out
+
+      - name: Python verifier
+        run: python3 celextrix_impossible_return_v4/verifier.py /tmp/proof-b.txt > /tmp/py-b.out
+
+      - name: Independent verifiers agree byte-for-byte
+        run: diff -u /tmp/js-b.out /tmp/py-b.out
+
+      - name: Stage-A valid route blindness control
+        run: |
+          printf 'CELEXTRIX-ROUTE-IDENTITY-V4|A|NNEESSWW|EENNWWSS\n' > /tmp/stage-a.txt
+          node celextrix_impossible_return_v4/prover.mjs /tmp/stage-a.txt > /tmp/proof-a.txt
+          out="$(node celextrix_impossible_return_v4/verifier.mjs /tmp/proof-a.txt)"
+          echo "$out"
+          printf '%s' "$out" | grep -q '^RESULT|BREAK_ACCEPTED_STAGE_A_CONTROL$'
+
+      - name: Stage-B 50k exact-route contradiction search
+        run: |
+          out="$(node celextrix_impossible_return_v4/campaign.mjs --cases 50000 --seed 117)"
+          echo "$out"
+          node -e 'const x=JSON.parse(process.argv[1]); if(x.stage_b_route_contradictions!==0) process.exit(1)' "$out"
