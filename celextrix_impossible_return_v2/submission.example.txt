@@ -1,0 +1,1 @@
+{"protocol":"celextrix-impossible-return-faithful-v2","stage":"B","left":"NNEESSWW","right":"EENNWWSS"}

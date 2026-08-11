@@ -1,0 +1,61 @@
+{
+  "faithfulness": {
+    "failure_classification": "CHECKER_FAITHFULNESS_FAILURE",
+    "observer_dual_evaluation": true,
+    "oracle": "batch-vertices-bigint-no-shared-computation",
+    "reference": "directional-closed-form-bigint-no-shared-computation",
+    "stage_b_inverse_reconstruction": true,
+    "subject": "incremental-bigint-no-shared-computation"
+  },
+  "field_prime": "101",
+  "implementation_manifest_sha256": "f159d5fa3cc40011c1cee703055b1fc0fb1dc49b2f03046ce83a68c2b07d795a",
+  "path": {
+    "distinct_paths_required": true,
+    "maximum_length": "64",
+    "minimum_length": "8",
+    "must_close": true
+  },
+  "protocol": "celextrix-impossible-return-faithful-v2",
+  "stage_a": {
+    "expected_nullity": "1",
+    "expected_rank": "3",
+    "observer_points": [
+      "1",
+      "2",
+      "3"
+    ],
+    "role": "blindness_control"
+  },
+  "stage_b": {
+    "expected_determinant": "12",
+    "expected_nullity": "0",
+    "expected_rank": "4",
+    "observer_points": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "role": "theorem_faithful_repair"
+  },
+  "target": {
+    "channels": [
+      "signed_doubled_area",
+      "x_weighted_doubled_area",
+      "y_weighted_doubled_area",
+      "radial_weighted_doubled_area"
+    ],
+    "dimension": "4"
+  },
+  "wire": {
+    "field_order": [
+      "protocol",
+      "stage",
+      "left",
+      "right"
+    ],
+    "final_lf_required": true,
+    "route_alphabet": "NESW",
+    "version": "canonical-ascii-json-v1"
+  }
+}

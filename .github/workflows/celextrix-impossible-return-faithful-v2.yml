@@ -1,0 +1,80 @@
+name: CELEXTRIX Impossible Return Faithful Checker v2
+
+on:
+  pull_request:
+    paths:
+      - "celextrix_impossible_return_v2/**"
+      - ".github/workflows/celextrix-impossible-return-faithful-v2.yml"
+      - ".github/ISSUE_TEMPLATE/celextrix-faithful-v2-report.yml"
+      - ".gitattributes"
+      - "README.md"
+  push:
+    branches: [main]
+    paths:
+      - "celextrix_impossible_return_v2/**"
+      - ".github/workflows/celextrix-impossible-return-faithful-v2.yml"
+      - ".github/ISSUE_TEMPLATE/celextrix-faithful-v2-report.yml"
+      - ".gitattributes"
+      - "README.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  faithful-checker:
+    name: faithful-checker (node ${{ matrix.node }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+
+    steps:
+      - name: Checkout exact challenge state
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Verify no package installation surface exists
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e celextrix_impossible_return_v2/package.json
+          test ! -e celextrix_impossible_return_v2/node_modules
+
+      - name: Run proof-carrying faithful-checker tests
+        run: node celextrix_impossible_return_v2/tests.mjs
+
+      - name: Verify Stage-A blindness control is realizable
+        run: node celextrix_impossible_return_v2/campaign.mjs --stage A --cases 10000 --seed 117
+
+      - name: Verify Stage-B campaign has no target-distinct observer collision
+        run: node celextrix_impossible_return_v2/campaign.mjs --stage B --cases 50000 --seed 117
+
+      - name: Verify canonical Stage-B fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          output="$(node celextrix_impossible_return_v2/checker.mjs celextrix_impossible_return_v2/submission.example.txt)"
+          echo "$output"
+          node -e 'const c=JSON.parse(process.argv[1]); if(c.result!=="NO_BREAK"||c.faithfulness_closed!==true||c.implementation_manifest_closed!==true||c.theorem_gate_closed!==true||c.observer_theorem.rank!==4||c.observer_theorem.nullity!==0||c.observer_theorem.determinant!=="12") process.exit(1)' "$output"
+
+      - name: Verify source independence topology
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in subject.mjs oracle.mjs reference.mjs; do
+            if grep -E '\bfrom[[:space:]]+["'\'']' "celextrix_impossible_return_v2/$file"; then
+              echo "$file acquired a computational import" >&2
+              exit 1
+            fi
+          done
