@@ -1,5 +1,11 @@
 # CELEXTRIX Impossible Return — Mathematical Framework Establishment II: Exact Route Identity v4
 
+> **STATUS: THEOREM & REFERENCE IMPLEMENTATION**
+>
+> V4 is **not the primary CELEXTRIX red-team target**. Use v2 for the live adversarial challenge. V4 exists to establish, explicitly and reproducibly, what happens when the represented target itself becomes an exact injective identity of the admitted route.
+
+**Finite-model boundary:** v4 applies only to the admitted finite alphabet `N,E,S,W`, closed routes of length 8 through 64, the published base-5 sentinel encoding, 23 base-101 limbs, and the declared Stage-A/Stage-B linear maps. It does not claim unrestricted continuous-path identity, browser/account security, hosting security, cryptographic security, or physical realization.
+
 Protocol:
 
 ```text
@@ -15,6 +21,12 @@ Framework principle established here:
 See [`../MATHEMATICAL_FRAMEWORK_ESTABLISHMENT.md`](../MATHEMATICAL_FRAMEWORK_ESTABLISHMENT.md) for the complete version arc.
 
 V4 closes the remaining mathematical compression in earlier versions. The target is no longer a finite collection of route moments. It is an injective encoding of the complete admitted route.
+
+## Why v4 is a theorem/reference surface
+
+V2 is valuable as a challenge because parser, checker, representation, and implementation-faithfulness obligations remain genuine audit surfaces.
+
+V4 has a different purpose. Once the exact route code and explicit Stage-B inverse are published, the construction is intentionally transparent. That is not a weakness; it is the framework-establishment endpoint showing exactly why blindness disappears when the target is complete.
 
 ## Exact route identity
 
@@ -134,13 +146,7 @@ B R(gamma_1) = B R(gamma_2)
 => gamma_1 = gamma_2.
 ```
 
-A Stage-B observer collision between distinct admitted routes is classified:
-
-```text
-THEOREM_CONTRADICTION_STAGE_B
-```
-
-and fails closed.
+A valid counterexample to that finite implication would be a theorem contradiction. V4 is not marketed as a black-box challenge because the injective coding and inverse are deliberately explicit.
 
 ## No JSON proof parser
 
@@ -153,7 +159,7 @@ Two standard-library implementations are included:
 - JavaScript / BigInt;
 - Python / int.
 
-CI requires byte-identical verdicts across the runtime matrix.
+CI requires byte-identical verdicts across the runtime matrix. These programs are reference implementations of the published relation, not the source of mathematical authority.
 
 ## Run
 
@@ -165,8 +171,10 @@ python3 celextrix_impossible_return_v4/verifier.py proof.txt
 node celextrix_impossible_return_v4/campaign.mjs --cases 50000 --seed 117
 ```
 
+## Reporting
+
+Theorem contradictions, specification ambiguities, transcript defects, and independent-verifier disagreements remain welcome as **framework theorem/reference reports**. They are not promoted as the primary red-team challenge.
+
 ## Claim boundary
 
-V4 establishes exact route identity only for the admitted finite alphabet `N,E,S,W`, closed routes of length 8 through 64, the published base-5 sentinel encoding, 23 base-101 limbs, and the declared Stage-A/Stage-B linear maps.
-
-It does not claim unrestricted continuous-path identity, browser security, account security, hosting security, physical realization, or independence from the correctness of arithmetic performed by a physical machine.
+V4 establishes exact route identity only for its declared finite model. The narrowness of that statement is intentional: it makes the theorem precise, independently checkable, and falsifiable without turning it into an unsupported universal-security claim.
