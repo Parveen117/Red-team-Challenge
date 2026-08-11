@@ -32,7 +32,7 @@ BREAK_ACCEPTED_STAGE_B
 
 > **Make CELEXTRIX forget how you returned.**
 
-Submit two distinct closed routes that end at the same point. Stage A asks for a realizable collision in a three-channel observer of a four-channel higher-order route-memory target. Stage B adds the fourth Vandermonde channel and becomes an implementation/faithfulness challenge.
+V1 preserves the original finite checker. Stage A is a deliberately blind three-evaluation observer of a four-channel target. Stage B adds the fourth Vandermonde channel and is the repaired finite observer.
 
 Start here:
 
@@ -42,30 +42,63 @@ Start here:
 - deterministic search: `node celextrix_impossible_return/campaign.mjs --stage A --cases 50000 --seed 117`
 - report: **Issues -> CELEXTRIX Impossible Return break report**
 
-Winning results:
+V1 remains frozen for reproducibility.
+
+### 3. CELEXTRIX IMPOSSIBLE RETURN — FAITHFUL CHECKER v2
+
+V2 makes implementation faithfulness a prerequisite for theorem adjudication.
+
+Before Stage A or Stage B can be evaluated, the checker requires:
 
 ```text
-BREAK_ACCEPTED_STAGE_A
-BREAK_ACCEPTED_STAGE_B
+incremental subject
+=
+batch oracle
+=
+directional reference
 ```
+
+over exact `BigInt` arithmetic in `F_101`, independent observer evaluation, frozen implementation hashes, and—on Stage B—exact inverse reconstruction:
+
+```text
+T -> V T -> V^{-1} V T = T
+```
+
+Stage A is explicitly the blindness control (`rank=3`, `nullity=1`). Stage B is the theorem-faithful repair (`rank=4`, `nullity=0`, determinant `12 mod 101`).
+
+Start here:
+
+- [`celextrix_impossible_return_v2/README.md`](celextrix_impossible_return_v2/README.md)
+- theorem: [`celextrix_impossible_return_v2/THEOREM.md`](celextrix_impossible_return_v2/THEOREM.md)
+- tests: `node celextrix_impossible_return_v2/tests.mjs`
+- checker: `node celextrix_impossible_return_v2/checker.mjs celextrix_impossible_return_v2/submission.example.txt`
+- Stage-A control: `node celextrix_impossible_return_v2/campaign.mjs --stage A --cases 10000 --seed 117 --emit-witness`
+- Stage-B campaign: `node celextrix_impossible_return_v2/campaign.mjs --stage B --cases 50000 --seed 117`
+- report: **Issues -> CELEXTRIX Faithful Checker v2 report**
+
+Important machine classes:
+
+```text
+BREAK_ACCEPTED_STAGE_A_CONTROL
+NO_BREAK
+CHECKER_FAITHFULNESS_FAILURE
+THEOREM_CONTRADICTION_STAGE_B
+```
+
+A Stage-A collision is expected evidence of the declared blind direction. A Stage-B target-distinct observer collision is not treated as an ordinary implementation break; after all faithfulness gates close it is classified as a theorem contradiction.
 
 ## What counts as a break
 
-A valid break must be produced by the released checker on the exact reported commit and must satisfy that challenge's frozen grammar and predicate.
+A valid report must be produced by the released checker on the exact reported commit and satisfy that challenge's frozen grammar and predicate.
 
-Unsupported prose, malformed input, unknown rules, duplicate JSON keys, changing Genesis, attacking unrelated services, or merely making the program crash are not accepted unless the challenge rules explicitly classify them as a break.
+Unsupported prose, malformed input, unknown rules, changing Genesis, attacking unrelated services, or merely making the program crash are not accepted unless the challenge rules explicitly classify them as a reportable implementation-faithfulness defect.
 
 ## Reporting
 
-Open the repository's **Issues -> New issue** page and choose the form for the challenge you attacked:
-
-- **BREAK RECOGNITION v1 break report** for `break-recognition-v1`;
-- **CELEXTRIX Impossible Return break report** for `celextrix-impossible-return-v1`.
-
-Include the exact commit SHA, complete non-secret submission, exact machine result, and a concise proof that the frozen input rules are satisfied.
+Open the repository's **Issues -> New issue** page and choose the challenge-specific form.
 
 Security-sensitive findings that could materially endanger an unrelated live service should not be posted as a public challenge report.
 
 ## Claim boundary
 
-These are finite, executable challenges. A clean campaign means only that no break was found under the declared model and tested surface. It is not a universal security, cryptographic, physical, or mathematical correctness claim.
+These are finite, executable challenges. Their guarantees are limited to each frozen grammar, target, arithmetic model, observer, and checker identity. They are not universal browser, account, DNS, hosting, cryptographic, physical, or unrestricted mathematical-security claims.

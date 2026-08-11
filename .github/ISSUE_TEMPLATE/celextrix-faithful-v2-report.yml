@@ -1,0 +1,70 @@
+name: CELEXTRIX Faithful Checker v2 report
+description: Report a checker-confirmed Stage-A control witness, checker-faithfulness defect, or Stage-B theorem contradiction
+title: "[CELEXTRIX V2] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form only for `celextrix-impossible-return-faithful-v2`.
+
+        Stage A is an intentional blindness control. Stage B is theorem-faithful only after the implementation-faithfulness and theorem gates close.
+
+        Do not include passwords, tokens, private keys, personal data, destructive payloads, or attacks against unrelated services.
+
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Report classification
+      options:
+        - Stage A control witness — BREAK_ACCEPTED_STAGE_A_CONTROL
+        - Checker faithfulness defect — CHECKER_FAITHFULNESS_FAILURE
+        - Stage B theorem contradiction — THEOREM_CONTRADICTION_STAGE_B
+    validations:
+      required: true
+
+  - type: input
+    id: commit
+    attributes:
+      label: Exact checker commit SHA
+      placeholder: 40-character Git commit SHA
+    validations:
+      required: true
+
+  - type: textarea
+    id: submission
+    attributes:
+      label: Exact canonical submission bytes
+      description: Paste the complete non-secret canonical one-line submission. State explicitly whether the final LF was present.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: certificate
+    attributes:
+      label: Exact checker certificate
+      description: Paste the complete machine-readable output.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and argument
+      description: Explain how the frozen wire grammar, Genesis, implementation manifest, faithfulness gate, and theorem gate were preserved.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestations
+    attributes:
+      label: Attestations
+      options:
+        - label: I reproduced this on the exact reported commit.
+          required: true
+        - label: I did not modify Genesis, the implementation manifest, checker files, or the admitted wire grammar.
+          required: true
+        - label: This report contains no credentials, secrets, personal data, or destructive payloads.
+          required: true
