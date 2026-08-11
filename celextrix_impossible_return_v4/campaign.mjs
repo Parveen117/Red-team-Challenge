@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+import { routeTarget, observerB, arrayEqual } from "./protocol.mjs";
+const D={N:[0,1],E:[1,0],S:[0,-1],W:[-1,0]}, S="NESW";
+function rng(seed){let x=seed>>>0;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return x>>>0;};}
+function closed(next,n=20){let x=0,y=0,s="";for(let i=0;i<n;i++){const c=S[next()%4];s+=c;x+=D[c][0];y+=D[c][1];}if(x>0)s+="W".repeat(x);if(x<0)s+="E".repeat(-x);if(y>0)s+="S".repeat(y);if(y<0)s+="N".repeat(-y);return s;}
+export function run(cases=50000,seed=117){const next=rng(seed),seen=new Map();let contradictions=0;for(let i=0;i<cases;i++){const route=closed(next);if(route.length<8||route.length>64)continue;const target=routeTarget(route);const observer=observerB(target);const key=observer.join(":");const prior=seen.get(key);if(prior&&prior.route!==route){if(!arrayEqual(prior.target,target))contradictions++;else throw new Error("ROUTE_IDENTITY_COLLISION");}else if(!prior)seen.set(key,{route,target});}return {protocol:"celextrix-impossible-return-route-identity-v4",cases,seed,stage_b_route_contradictions:contradictions,unique_observers:seen.size};}
+if(process.argv[1]&&process.argv[1].endsWith("campaign.mjs")){let cases=50000,seed=117;for(let i=2;i<process.argv.length;i++){if(process.argv[i]==="--cases")cases=Number(process.argv[++i]);else if(process.argv[i]==="--seed")seed=Number(process.argv[++i]);}process.stdout.write(JSON.stringify(run(cases,seed))+"\n");}
