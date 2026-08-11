@@ -1,6 +1,6 @@
 name: CELEXTRIX v3 — Framework theorem/reproducibility report
 description: Report a proof-transcript contradiction, specification ambiguity, or independent-verifier disagreement for Framework Establishment I
- title: "[CELEXTRIX V3 FRAMEWORK] "
+title: "[CELEXTRIX V3 FRAMEWORK] "
 labels: []
 body:
   - type: markdown
