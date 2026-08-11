@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import { execFileSync } from "node:child_process";
+import { buildProof } from "./prover.mjs";
+import { verifyProofObject, verifyProofRaw } from "./verifier.mjs";
+import { canonicalJson, SUBMISSION_PREFIX } from "./protocol.mjs";
+import { run } from "./campaign.mjs";
+let n=0;const test=(name,fn)=>{fn();n++;console.log(`PASS ${name}`)};
+const b=`${SUBMISSION_PREFIX}|B|NNEESSWW|EENNWWSS\n`;const a=`${SUBMISSION_PREFIX}|A|NNEESSWW|EENNWWSS\n`;
+test("Stage B proof transcript verifies",()=>assert.equal(verifyProofObject(JSON.parse(canonicalJson(buildProof(b)))).result,"NO_BREAK"));
+test("Stage A theorem witness is accepted",()=>assert.equal(verifyProofObject(JSON.parse(canonicalJson(buildProof(a)))).theorem_witness_closed,true));
+test("canonical proof bytes round-trip",()=>{const raw=canonicalJson(buildProof(b))+"\n";assert.equal(verifyProofRaw(raw).transcript_closed,true)});
+test("tampered target is rejected",()=>{const p=JSON.parse(canonicalJson(buildProof(b)));p.left.target[0]=(p.left.target[0]+1)%101;assert.throws(()=>verifyProofObject(p),/TARGET_TRANSCRIPT_INVALID/)});
+test("tampered inverse is rejected",()=>{const p=JSON.parse(canonicalJson(buildProof(b)));p.stage_b_inverse_witness[0][0]=(p.stage_b_inverse_witness[0][0]+1)%101;assert.throws(()=>verifyProofObject(p),/STAGE_B_INVERSE_WITNESS_INVALID/)});
+test("tampered Stage A kernel is rejected",()=>{const p=JSON.parse(canonicalJson(buildProof(a)));p.stage_a_kernel_witness=[0,0,0,0];assert.throws(()=>verifyProofObject(p),/STAGE_A_KERNEL_WITNESS_INVALID/)});
+test("Stage A control collision exists",()=>{const r=run("A",10000,117,true);assert.equal(r.witness_found,true);assert.equal(r.witness.result,"BREAK_ACCEPTED_STAGE_A_CONTROL")});
+test("Stage B 50000 campaign has zero collision",()=>assert.equal(run("B",50000,117,false).target_distinct_observer_collisions,0));
+test("Python verifier agrees exactly with JS",()=>{const f="/tmp/celex-v3-proof.json";fs.writeFileSync(f,canonicalJson(buildProof(b))+"\n");const py=execFileSync("python3",[new URL("./verifier.py",import.meta.url).pathname,f],{encoding:"utf8"}).trim();const js=canonicalJson(verifyProofRaw(fs.readFileSync(f,"utf8")));assert.equal(py,js)});
+console.log(`CELEXTRIX_MATH_LIBERATION_V3_TESTS=${n}/9`);
