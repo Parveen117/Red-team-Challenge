@@ -1,4 +1,10 @@
-# CELEXTRIX Impossible Return — Faithful Checker v2
+# CELEXTRIX Impossible Return — The Red-Team Challenge (Faithful Checker v2)
+
+> **STATUS: ACTIVE PUBLIC RED-TEAM TARGET**
+>
+> Attack this version if the goal is to test CELEXTRIX as a live adversarial system. The later v3/v4 versions are retained primarily as mathematical framework-establishment references.
+
+**Finite-model boundary:** v2 concerns only the frozen finite `N/E/S/W` closed-route grammar, length 8 through 64, its exact four-channel target over `F_101`, and the pinned checker/faithfulness contract. It is not a claim of browser, account, DNS, hosting, cryptographic, physical, or unrestricted continuous-path security.
 
 This is a separately versioned proof-carrying checker for the public Impossible Return challenge.
 
@@ -9,6 +15,12 @@ celextrix-impossible-return-faithful-v2
 ```
 
 The v1 challenge remains unchanged and reproducible. V2 adds an implementation-faithfulness gate before any Stage A or Stage B result may be recognized.
+
+## Why v2 is the red-team version
+
+V2 deliberately retains a genuine implementation surface: canonical parsing, exact arithmetic, three independent target realizations, observer agreement, frozen implementation identity, theorem reconstruction, and final checker adjudication must all remain coherent at once.
+
+That makes the adversarial question meaningful: not simply whether a known injective matrix can be contradicted algebraically, but whether the complete frozen implementation-faithfulness boundary can be made to admit something it should reject.
 
 ## Core rule
 
@@ -125,8 +137,12 @@ node celextrix_impossible_return_v2/campaign.mjs --stage B --cases 50000 --seed 
 node celextrix_impossible_return_v2/checker.mjs celextrix_impossible_return_v2/submission.example.txt
 ```
 
+## Reporting
+
+Use **Issues -> CELEXTRIX Faithful Checker v2 report** for the active red-team challenge. Include the exact commit, canonical submission bytes, checker certificate, and reproduction argument.
+
 ## Claim boundary
 
 V2 proves implementation faithfulness only for the frozen finite route grammar, exact four-channel target, `F_101` arithmetic, declared observer maps, and pinned checker implementation.
 
-It does not prove browser, account, DNS, hosting, cryptographic, physical, or unrestricted continuous-path security.
+It does not prove browser, account, DNS, hosting, cryptographic, physical, or unrestricted continuous-path security. That boundary is part of the challenge contract and should remain visible in any public description.
