@@ -19,6 +19,19 @@ They should not be marketed as if they were the same kind of black-box red-team 
 
 The default branch is `main`. All versions are intentionally preserved.
 
+## Public launch package
+
+For the first repository-level suite release, use:
+
+- [`PUBLIC_RELEASE_V1.md`](PUBLIC_RELEASE_V1.md) — release scope, freeze rules, and a ready-to-paste GitHub Release description;
+- [`LAUNCH_CHECKLIST.md`](LAUNCH_CHECKLIST.md) — final publication steps and post-launch discipline.
+
+Recommended release tag:
+
+```text
+red-team-challenge-suite-v1.0.0
+```
+
 ## Version lineage
 
 ```text
