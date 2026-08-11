@@ -2,6 +2,21 @@
 
 The CELEXTRIX / Recognition challenge line is intentionally preserved as a sequence of versions rather than rewritten into one final artifact. The earlier versions are part of the evidence: they show what was blind, what was repaired, what still depended on implementation, and where the mathematical object finally became independent of any particular checker.
 
+## Public roles
+
+The versions remain together, but they are **not marketed as the same kind of artifact**:
+
+| Version | Public role | Primary question |
+|---|---|---|
+| v1 | Historical falsification baseline | What is blind, and what does the first repair recover? |
+| **v2** | **Active public red-team challenge** | Can the frozen theorem-to-software faithfulness boundary be made to admit something it should reject? |
+| v3 | **Mathematical Framework Establishment I / proof-authority reference** | Can mathematical authority be carried by the relation and explicit witnesses rather than a particular checker? |
+| v4 | **Mathematical Framework Establishment II / theorem & exact-identity reference** | Is the represented target itself injective on the complete admitted object? |
+
+This distinction is intentional. V2 retains genuine parser/checker/representation/implementation-faithfulness audit surface and is therefore the natural live red-team target. V3 and v4 progressively remove those external dependencies and make the mathematical witnesses increasingly explicit; their primary public value is **framework establishment**, not artificial challenge suspense.
+
+All versions remain executable and falsifiable. A valid contradiction to v3/v4 would still be scientifically important; it is simply reported as a theorem/specification/reproducibility result rather than promoted as the primary CELEXTRIX red-team puzzle.
+
 This repository therefore has two historical phases.
 
 ## Phase I — Falsification and Engineering Lineage
@@ -19,7 +34,7 @@ invite a counterexample
 
 Stage A is deliberately incomplete. Stage B repairs the declared finite target observer. The value of v1 is not that it is the final framework; it is the falsification record from which the later construction grows.
 
-### v2 — Implementation-faithfulness bridge
+### v2 — Implementation-faithfulness bridge and active red-team surface
 
 V2 asks a second question:
 
@@ -29,7 +44,7 @@ Even if the theorem is correct, does the software faithfully realize it?
 
 It therefore requires multiple independent target implementations, exact arithmetic, observer agreement, inverse reconstruction, Genesis closure, and fail-closed implementation checks.
 
-V2 is the engineering bridge between a theorem and an executable realization of that theorem.
+V2 is the engineering bridge between a theorem and an executable realization of that theorem. **It is also the primary CELEXTRIX version to expose as a live public red-team target**, because this bridge still contains meaningful implementation-faithfulness obligations to attack.
 
 ## Phase II — Mathematical Framework Establishment
 
@@ -127,4 +142,10 @@ Object
 
 A result is recognized only after the relevant identity and reconstruction obligations close.
 
-This is a finite mathematical framework establishment, not a claim that every physical, continuous, cryptographic, browser, account, or deployment system is automatically covered. New domains must define their own objects, target identity, observer, blindness test, completion rule, and proof obligations.
+## Claim boundary
+
+The boundary is part of the establishment, not an afterthought.
+
+This is a finite mathematical framework establishment, not a claim that every physical, continuous, cryptographic, browser, account, or deployment system is automatically covered. For CELEXTRIX Impossible Return v2-v4, the relevant public claims stay inside the declared finite `N/E/S/W`, closed-route, length-8-through-64 model and its published arithmetic/observer rules.
+
+New domains must define their own objects, target identity, observer, blindness test, completion rule, and proof obligations before the framework can make a corresponding claim there.
