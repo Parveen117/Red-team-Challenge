@@ -16,11 +16,27 @@ No install, no signup, no account. Open a page, become the attacker.
 
 | Artifact | What it is |
 | --- | --- |
+| [`web/index.html`](web/index.html) | **Start here.** Routes to the three pages below. |
+| [`web/demo.html`](web/demo.html) | **The demo.** Monty and Asha, two phones on one page, with the relay's entire view printed live underneath. |
 | [`web/breakit.html`](web/breakit.html) | **The challenge.** Four real attacks, four buttons, run them yourself. |
-| [`web/demo.html`](web/demo.html) | Two simulated phones in one page; the relay's entire view printed live. |
 | [`web/connect.html`](web/connect.html) | Serverless mode: two real people, codes pasted over any app. |
 | [`harness/attack_suite.mjs`](harness/attack_suite.mjs) | The same four attacks, headless: `node harness/attack_suite.mjs` |
 | [`harness/protocol_suite.mjs`](harness/protocol_suite.mjs) | Eight protocol-grammar properties (the part that is actually ours) |
+| [`harness/public_selfcheck.mjs`](harness/public_selfcheck.mjs) | Asserts these artifacts stay self-contained and free of private-side references |
+
+## What is published here, and what is not
+
+This folder is the whole demonstrable protocol: identities, the capsule
+grammar, the sealed envelope, the connection rules, and three pages that
+run them. That is deliberate — a red-team challenge you cannot read is
+not a challenge.
+
+What is **not** here, and does not need to be for anything above to run:
+the production kernel and its adapter SDK, the coupling tracer, the
+relay service and its deployment, and the specifications behind them.
+Those live in a private repository. Nothing in this folder imports from
+them, and `harness/public_selfcheck.mjs` fails if a future edit ever
+introduces such a reference, a remote asset, or a key-shaped string.
 
 Every HTML file is self-contained: open it from disk, no server, no
 network. Read the source — it is the whole implementation.

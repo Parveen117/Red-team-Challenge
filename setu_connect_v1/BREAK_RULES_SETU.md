@@ -11,6 +11,7 @@ HTML files and two zero-dependency Node suites. Nothing else is.
     web/connect.html        serverless two-person mode
     harness/attack_suite.mjs      A1..A4, must all fail
     harness/protocol_suite.mjs    P1..P8, protocol grammar properties
+    harness/public_selfcheck.mjs  artifacts stay offline-runnable + clean
 
 Run both suites before submitting anything:
 
