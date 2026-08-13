@@ -21,8 +21,9 @@ The default branch is `main`. All versions are intentionally preserved.
 
 ## SETU Connect v1 — live browser challenge
 
-A second, different kind of target: a working communication protocol you
-can attack from a browser with no install and no account.
+A second, different kind of target: a working communication protocol for
+independent hardware endpoints, demonstrated in-browser with no install and
+no account.
 
 - [`setu_connect_v1/`](setu_connect_v1/) — challenge folder;
 - [`setu_connect_v1/web/index.html`](setu_connect_v1/web/index.html) — start here (four attacks, live wire view, two-person mode);

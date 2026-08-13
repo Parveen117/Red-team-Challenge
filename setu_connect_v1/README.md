@@ -17,7 +17,7 @@ No install, no signup, no account. Open a page, become the attacker.
 | Artifact | What it is |
 | --- | --- |
 | [`web/index.html`](web/index.html) | **Start here.** Routes to the three pages below. |
-| [`web/demo.html`](web/demo.html) | **The demo.** Monty and Asha, two phones on one page, with the relay's entire view printed live underneath. |
+| [`web/demo.html`](web/demo.html) | **The demo.** Monty and Asha, two independent hardware endpoints represented on one page, with the relay's entire view printed live underneath. |
 | [`web/breakit.html`](web/breakit.html) | **The challenge.** Four real attacks, four buttons, run them yourself. |
 | [`web/connect.html`](web/connect.html) | Serverless mode: two real people, codes pasted over any app. |
 | [`harness/attack_suite.mjs`](harness/attack_suite.mjs) | The same four attacks, headless: `node harness/attack_suite.mjs` |
