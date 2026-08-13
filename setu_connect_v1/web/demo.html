@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SETU demo — two devices, one page</title>
+<title>SETU demo — two hardware endpoints, one page</title>
 <style>
 :root{--ink:#101418;--paper:#f7f5ef;--line:#d8d2c4;--marigold:#e08a00;
   --deep:#1b3a4b;--ok:#2e7d4f;--bad:#a63a2b;
@@ -55,10 +55,10 @@ button:disabled{opacity:.35;cursor:not-allowed}
 <body>
 <header>
   <h1>सेतु <b>SETU</b> — live demo</h1>
-  <p>Two devices on one page, real WebCrypto (Ed25519 identities, X25519 +
-  AES-GCM envelopes), the real capsule grammar. The relay between them is
-  in-memory here — and it is shown below, so you can see for yourself that
-  it only ever holds ciphertext.</p>
+  <p>Two independent hardware endpoints represented on one page, using real
+  WebCrypto (Ed25519 identities, X25519 + AES-GCM envelopes) and the real
+  capsule grammar. The relay between them is in-memory here — and it is shown
+  below, so you can see for yourself that it only ever holds ciphertext.</p>
 </header>
 <div id="stage">
   <div class="device" id="devA"></div>
@@ -221,8 +221,9 @@ function relayDeliver(env){
 function relayFetch(id){ const m = box.get(id) ?? []; box.set(id, []); return m; }
 
 // ---------- calls: signalling sealed through the relay, media P2P ----------
-// On this demo page both "phones" share one camera (one page, one device);
-// on real phones each has its own. The signalling path is the real one:
+// This page represents two hardware endpoints on one physical device, so they
+// share one camera; on separate hardware, each endpoint has its own. The
+// signalling path is the real one:
 // SDP and ICE travel inside sealed, signed capsules — the relay log below
 // shows only ciphertext for them too.
 const ICE = { iceServers:[{urls:"stun:stun.l.google.com:19302"}] };
@@ -329,7 +330,7 @@ async function makeDevice(el, label, colour){
               peer:null, state:"none", msgs:[], name:label };
 
   el.innerHTML = `
-    <h2 style="color:${colour}">${label}’s phone</h2>
+    <h2 style="color:${colour}">${label}’s hardware endpoint</h2>
     <div class="who">id ${subject_id.slice(0,20)}… · no number, no email</div>
     <div class="row"><input class="nm" placeholder="display name" value="${label}"></div>
     <div class="row"><button class="copy">Copy my connect-code</button>
@@ -350,7 +351,7 @@ async function makeDevice(el, label, colour){
   el.querySelector(".copy").onclick = () => {
     navigator.clipboard?.writeText(D.code());
     window.__clip = D.code();
-    el.querySelector(".state").textContent = "code copied — paste it on the other phone";
+    el.querySelector(".state").textContent = "code copied — present it to the other hardware endpoint";
   };
   el.querySelector(".paste").onclick = () => offer(D, window.__clip);
   el.querySelector(".snd").onclick = () => send(D);
@@ -368,10 +369,10 @@ async function sealTo(D, payload){
   relayDeliver(env);
 }
 async function offer(D, code){
-  if(!code) return alert("Copy the other phone’s connect-code first.");
+  if(!code) return alert("Copy the other hardware endpoint’s connect-code first.");
   const {idc, prekey, name} = JSON.parse(atob(code));
   if(idc.body.subject_id === D.idc.body.subject_id)
-    return alert("That is this phone’s own code — copy the other one.");
+    return alert("That is this hardware endpoint’s own code — copy the other one.");
   if(!(await verifyCapsule(idc, idc))) return alert("code failed verification");
   D.peer = {idc, prekey, name}; D.state = "offered";
   const off = await signCapsule(await makeCapsule({
