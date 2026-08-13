@@ -45,6 +45,11 @@ button:disabled{opacity:.35;cursor:not-allowed}
 #relaylog{font-family:var(--mono);font-size:10.5px;color:#5a6068;
   max-height:150px;overflow:auto;white-space:pre-wrap;word-break:break-all}
 .note{font-size:12px;color:#5a6068;margin-top:8px}
+.callrow{align-items:center;gap:8px;flex-wrap:wrap}
+.callrow button:disabled{opacity:.4;cursor:not-allowed}
+.cst{font-size:12px;color:#5a6068}
+.vids{margin-top:8px}
+.vids .rv{width:100%;max-width:240px;border-radius:8px;background:#000}
 </style>
 </head>
 <body>
@@ -332,7 +337,13 @@ async function makeDevice(el, label, colour){
     <div class="row"><span class="state off">not connected</span></div>
     <div class="msgs"></div>
     <div class="row"><input class="tx" placeholder="message… (E2E)" disabled>
-      <button class="snd" disabled>Send</button></div>`;
+      <button class="snd" disabled>Send</button></div>
+    <div class="row callrow">
+      <button class="call" disabled>📹 Video call</button>
+      <button class="ans gold" style="display:none">Answer</button>
+      <button class="end" style="display:none">End</button>
+      <span class="cst"></span></div>
+    <div class="vids" style="display:none"><video class="rv" autoplay playsinline></video></div>`;
   D.el = el;
   D.code = () => btoa(JSON.stringify({idc, prekey,
     name: el.querySelector(".nm").value}));
