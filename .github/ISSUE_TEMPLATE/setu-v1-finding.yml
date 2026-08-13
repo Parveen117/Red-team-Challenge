@@ -1,0 +1,60 @@
+name: SETU v1 finding
+description: Report a break, protocol-property failure, or implementation defect in SETU Connect v1
+title: "SETU-v1: "
+labels: ["setu-v1"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read `setu_connect_v1/BREAK_RULES_SETU.md` first. Do not include
+        private data, third-party keys, or attacks on live services.
+  - type: dropdown
+    id: verdict
+    attributes:
+      label: Verdict class
+      options:
+        - ATTACK_SUCCEEDED_A1_READ
+        - ATTACK_SUCCEEDED_A2_TAMPER
+        - ATTACK_SUCCEEDED_A3_FORGE
+        - ATTACK_SUCCEEDED_A4_SERVER
+        - PROTOCOL_PROPERTY_BROKEN_P1_P8
+        - IMPLEMENTATION_DEFECT
+        - OTHER
+    validations:
+      required: true
+  - type: dropdown
+    id: position
+    attributes:
+      label: Attack position you used
+      options:
+        - network attacker (sees/modifies/replays envelopes)
+        - malicious server (full relay state and control)
+        - malicious connected peer
+        - unconnected sender holding a public connect-code
+        - other (explain below)
+    validations:
+      required: true
+  - type: input
+    id: artifact
+    attributes:
+      label: Artifact and commit sha
+      placeholder: setu_connect_v1/web/breakit.html @ <sha>
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Exact steps, or a script we can run with plain `node`.
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Expected vs observed
+    validations:
+      required: true
+  - type: input
+    id: credit
+    attributes:
+      label: How should we credit you? (leave blank to stay anonymous)

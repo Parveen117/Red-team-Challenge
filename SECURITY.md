@@ -8,6 +8,8 @@ Authorized testing is limited to the published challenge artifacts, finite proto
 
 For CELEXTRIX Impossible Return v2-v4, the public claim boundary is the declared finite closed-route model over `N,E,S,W`, route length 8 through 64, and the published arithmetic/observer rules.
 
+For SETU Connect v1, the authorized surface is the published artifacts under `setu_connect_v1/` only, run locally from disk. Attacking any deployed SETU relay, its hosting, or any person's device or account is **not** authorized. The claim boundary is the four declared attacks and eight protocol properties in `setu_connect_v1/BREAK_RULES_SETU.md`; the cryptographic primitives themselves are standard and out of scope.
+
 The repository is **not** authorization to attack:
 
 - GitHub accounts or GitHub infrastructure;

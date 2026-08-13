@@ -19,6 +19,24 @@ They should not be marketed as if they were the same kind of black-box red-team 
 
 The default branch is `main`. All versions are intentionally preserved.
 
+## SETU Connect v1 — live browser challenge
+
+A second, different kind of target: a working communication protocol you
+can attack from a browser with no install and no account.
+
+- [`setu_connect_v1/`](setu_connect_v1/) — challenge folder;
+- [`setu_connect_v1/web/index.html`](setu_connect_v1/web/index.html) — start here (four attacks, live wire view, two-person mode);
+- [`setu_connect_v1/BREAK_RULES_SETU.md`](setu_connect_v1/BREAK_RULES_SETU.md) — scope, verdict classes, submission format;
+- `node setu_connect_v1/harness/attack_suite.mjs` and `.../protocol_suite.mjs` — zero-dependency verification.
+
+The cryptography is standard and externally audited (Ed25519, X25519,
+HKDF-SHA256, AES-256-GCM) and no novelty is claimed in it. The challenge
+concerns the trust grammar above it: signed identity capsules, two-sided
+connections, and signature-bound message content. Known gaps are listed
+in the folder's README rather than discovered by you — no forward
+secrecy yet, browser-storage identity, peer-to-peer call IP exposure,
+relay traffic analysis, and no independent audit.
+
 ## Public launch package
 
 For the first repository-level suite release, use:
