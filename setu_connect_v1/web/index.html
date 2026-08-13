@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SETU v1 — red-team challenge</title>
+<style>
+:root{--ink:#0d1114;--line:#242c33;--marigold:#e08a00;--ok:#3fb27f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:#e8e6df;
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:44px 20px 70px}
+h1{font-size:clamp(26px,6vw,44px);margin:0 0 6px;letter-spacing:-.02em}
+h1 b{color:var(--marigold)}
+.sub{color:#9aa5ad;font-size:16px;max-width:60ch;margin:0 0 30px}
+a.card{display:block;border:1px solid var(--line);background:#11171c;
+  padding:18px;margin:12px 0;text-decoration:none;color:inherit}
+a.card:hover{border-color:var(--marigold)}
+a.card h2{margin:0 0 4px;font-size:18px}
+a.card h2 span{color:var(--marigold)}
+a.card p{margin:0;color:#9aa5ad;font-size:14px}
+pre{background:#11171c;border:1px solid var(--line);padding:14px;
+  font-size:12.5px;overflow:auto;color:#b9c6cf}
+h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--marigold);margin:34px 0 10px}
+ul{color:#9aa5ad;font-size:14.5px;padding-left:18px}
+li{margin:6px 0}
+footer{margin-top:36px;border-top:1px solid var(--line);padding-top:16px;
+  color:#7d8a93;font-size:13px}
+</style>
+</head>
+<body><div class="wrap">
+<h1>SETU v1 — <b>break it</b></h1>
+<p class="sub">A messaging protocol you can attack from your browser. No
+install, no signup, no account. Standard cryptography (we invented none of
+it); the thing being challenged is the trust grammar built on top.</p>
+
+<a class="card" href="breakit.html">
+  <h2><span>01</span> &nbsp;Run four attacks</h2>
+  <p>Read an intercepted message, flip one bit, forge a sender, open it as
+  the server admin. Four buttons. Scoreboard included.</p></a>
+
+<a class="card" href="demo.html">
+  <h2><span>02</span> &nbsp;Watch the wire</h2>
+  <p>Two devices talking on one page, with everything the relay can see
+  printed live underneath.</p></a>
+
+<a class="card" href="connect.html">
+  <h2><span>03</span> &nbsp;Use it with a friend</h2>
+  <p>No server at all: paste codes to each other over any app you already
+  use. That app becomes the relay — and cannot read a word.</p></a>
+
+<h3>Headless, zero dependencies</h3>
+<pre>node harness/attack_suite.mjs      # A1..A4 must all fail
+node harness/protocol_suite.mjs   # P1..P8 grammar properties</pre>
+
+<h3>Known gaps — ours, stated first</h3>
+<ul>
+<li>No forward secrecy yet: fresh key per message, not the double ratchet.</li>
+<li>Identity lives in browser storage; no recovery yet.</li>
+<li>Calls are peer-to-peer, so callers see each other's IP addresses.</li>
+<li>A deployed relay sees mailbox ids, sizes and timing — traffic analysis
+is undefended.</li>
+<li>No independent security audit has been done.</li>
+</ul>
+
+<footer>Scope, verdict classes and submission format:
+<code>BREAK_RULES_SETU.md</code>. Reproduced findings are credited by name.
+No cash bounty — announcing one before an audit would be dishonest.</footer>
+</div></body>
+</html>
