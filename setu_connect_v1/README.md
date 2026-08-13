@@ -20,10 +20,16 @@ No install, no signup, no account. Open a page, become the attacker.
 | [`web/demo.html`](web/demo.html) | Two simulated phones in one page; the relay's entire view printed live. |
 | [`web/connect.html`](web/connect.html) | Serverless mode: two real people, codes pasted over any app. |
 | [`harness/attack_suite.mjs`](harness/attack_suite.mjs) | The same four attacks, headless: `node harness/attack_suite.mjs` |
-| [`harness/flow_suite.mjs`](harness/flow_suite.mjs) | Full two-party flow incl. impostor/tamper/eavesdrop rejection |
+| [`harness/protocol_suite.mjs`](harness/protocol_suite.mjs) | Eight protocol-grammar properties (the part that is actually ours) |
 
 Every HTML file is self-contained: open it from disk, no server, no
 network. Read the source — it is the whole implementation.
+
+> **If a link here 404s for you:** GitHub shows `.html` files as source
+> rather than running them, and blob links only resolve on branches that
+> actually contain the files. See [`PUBLISHING.md`](PUBLISHING.md) — the
+> live pages need GitHub Pages enabled, and this folder needs to be on
+> the branch your link points at.
 
 ## The four declared attacks (all must fail)
 

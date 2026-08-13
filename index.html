@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CELEXTRIX / Recognition — red-team challenges</title>
+<style>
+:root{--ink:#0d1114;--line:#242c33;--marigold:#e08a00}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:#e8e6df;
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:48px 20px 70px}
+h1{font-size:clamp(24px,5.5vw,38px);margin:0 0 8px;letter-spacing:-.02em}
+h1 b{color:var(--marigold)}
+p.sub{color:#9aa5ad;margin:0 0 30px;max-width:62ch}
+a.card{display:block;border:1px solid var(--line);background:#11171c;
+  padding:18px;margin:12px 0;text-decoration:none;color:inherit}
+a.card:hover{border-color:var(--marigold)}
+a.card h2{margin:0 0 4px;font-size:18px}
+a.card p{margin:0;color:#9aa5ad;font-size:14px}
+.note{color:#7d8a93;font-size:13px;margin-top:28px;border-top:1px solid var(--line);
+  padding-top:16px}
+code{color:#d6c08a}
+</style>
+</head>
+<body><div class="wrap">
+<h1>Red-team <b>challenges</b></h1>
+<p class="sub">Executable falsification targets. Every claim here is bounded to
+its declared model, and every bound is published before you start.</p>
+
+<a class="card" href="setu_connect_v1/web/index.html">
+  <h2>SETU Connect v1 — live browser challenge</h2>
+  <p>Attack a working messaging protocol from your browser: read an
+  intercepted message, tamper with it, forge a sender, or open it as the
+  server. No install, no account.</p></a>
+
+<a class="card" href="https://github.com/Parveen117/Red-team-Challenge/tree/main/celextrix_impossible_return_v2">
+  <h2>CELEXTRIX Impossible Return v2 — finite-model target</h2>
+  <p>Checker-faithfulness and Stage-B theorem surface over the declared
+  closed-route model. Source and rules on GitHub.</p></a>
+
+<p class="note">Scope and reporting: <code>SECURITY.md</code>. SETU scope and
+verdict classes: <code>setu_connect_v1/BREAK_RULES_SETU.md</code>. Reproduced
+findings are credited by name; no cash bounty is announced.</p>
+</div></body>
+</html>
