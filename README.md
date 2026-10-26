@@ -1,5 +1,8 @@
 # CELEXTRIX / RECOGNITION — RED-TEAM CHALLENGE + MATHEMATICAL FRAMEWORK
 
+> **Research record:** [Dated snapshot, content hashes and archive links](RESEARCH_PROVENANCE.md) · [Canonical repository governance](GOVERNANCE.md). Cite the exact version used.
+
+
 Executable falsification challenges and mathematical framework-establishment references for Recognition / RNKE systems.
 
 > **FINITE-MODEL BOUNDARY:** Every result is limited to its declared finite protocol. For CELEXTRIX Impossible Return v2-v4, the admitted object is a closed route over `N,E,S,W` with length 8 through 64 under the published finite-field rules. These results do **not** claim browser, account, DNS, hosting, cryptographic, physical, or unrestricted continuous-path security.
