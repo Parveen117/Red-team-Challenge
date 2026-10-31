@@ -1,5 +1,9 @@
 # CELEXTRIX / RECOGNITION — RED-TEAM CHALLENGE + MATHEMATICAL FRAMEWORK
 
+<!-- patent-status-notice:start -->
+> **Patent pending — rights reserved.** The repository owner confirms filed PCT and/or provisional patent applications in the related invention portfolio. This notice applies to subject matter supported by the applicable pending filings. Public disclosure is not intended to waive patent rights. Existing licences and permissions remain effective. See [PATENT_NOTICE.md](PATENT_NOTICE.md).
+<!-- patent-status-notice:end -->
+
 > **Research record:** [Dated snapshot, content hashes and archive links](RESEARCH_PROVENANCE.md) · [Canonical repository governance](GOVERNANCE.md). Cite the exact version used.
 
 
